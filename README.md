@@ -1,16 +1,17 @@
 # lelapa-demo-gnerds
-- assets
-    > - images
-    > - icons
+
+### Project Directory
+
+- assets > images & icons
 - components  
-    > - templates
-    > - common
-    > - pages
-    > - forms
+  - /templates:layouts
+   - /common
+   - /pages
+   - /forms
 - hooks
 - routes
-    > - app-routes
-    > - auth-routes
+   - /app-routes
+   - /auth-routes
 - services
-- tores
+- stores: reducers
 - types
