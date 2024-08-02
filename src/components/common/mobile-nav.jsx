@@ -7,7 +7,10 @@ export const MobileNav = () => {
         Home
       </Link>{" "}
       <Link to="/translate" className="[&.active]:font-bold">
-        About
+        Translate
+      </Link>{" "}
+      <Link to="/project" className="[&.active]:font-bold">
+        Project
       </Link>
     </nav>
   );
