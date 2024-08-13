@@ -1,7 +1,18 @@
+import { AppLayout, SliderCarousel } from "../../components";
+import { TranslateBg } from "../../assets/images";
+
 export const Home = () => {
   return (
-    <div className="">
-      <p>Now you can translate to South African Languages</p>
-    </div>
+    <AppLayout>
+      <SliderCarousel
+        cardsData={[
+          {
+            title: "Translate",
+            image: TranslateBg,
+            description: "Translate to South African Languages",
+          },
+        ]}
+      />
+    </AppLayout>
   );
 };
