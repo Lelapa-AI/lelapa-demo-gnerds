@@ -1,9 +1,9 @@
-import { AppLayout, SliderCarousel } from "../../components";
+import { SliderCarousel } from "../../components";
 import { ConverseBg, TranscribeBg, TranslateBg } from "../../assets/images";
 
 export const Home = () => {
   return (
-    <AppLayout>
+    <div>
       <SliderCarousel
         cardsData={[
           {
@@ -23,6 +23,6 @@ export const Home = () => {
           },
         ]}
       />
-    </AppLayout>
+    </div>
   );
 };
