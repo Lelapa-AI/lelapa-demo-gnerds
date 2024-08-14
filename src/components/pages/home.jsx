@@ -1,5 +1,5 @@
 import { AppLayout, SliderCarousel } from "../../components";
-import { TranslateBg } from "../../assets/images";
+import { ConverseBg, TranscribeBg, TranslateBg } from "../../assets/images";
 
 export const Home = () => {
   return (
@@ -9,6 +9,16 @@ export const Home = () => {
           {
             title: "Translate",
             image: TranslateBg,
+            description: "Translate to South African Languages",
+          },
+          {
+            title: "Transcribe",
+            image: TranscribeBg,
+            description: "Translate to South African Languages",
+          },
+          {
+            title: "Converse",
+            image: ConverseBg,
             description: "Translate to South African Languages",
           },
         ]}

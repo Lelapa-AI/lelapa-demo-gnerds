@@ -1,9 +1,9 @@
-import { AppLayout } from "./components";
+import { AppLayout } from "./components/templates/app-layout";
 
 function App() {
   return (
     <AppLayout>
-      <>
+      <section>
         <h1 className="font-bold text-3xl">Progress</h1>
         <iframe
           className="clickup-embed bg-transparent w-full h-full"
@@ -11,7 +11,7 @@ function App() {
           onWheel=""
           title="ClickUp Embed"
         />
-      </>
+      </section>
     </AppLayout>
   );
 }
