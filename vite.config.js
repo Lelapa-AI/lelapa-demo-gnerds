@@ -17,19 +17,19 @@ export default defineConfig({
         theme_color: "#ffffff",
         icons: [
           {
-            src: "pwa-64x64.png",
+            src: "vite.svg",
             sizes: "64x64",
-            type: "image/png",
+            type: "image/svg",
           },
           {
-            src: "pwa-192x192.png",
+            src: "vite.svg",
             sizes: "192x192",
-            type: "image/png",
+            type: "image/svg",
           },
           {
-            src: "pwa-512x512.png",
+            src: "vite.svg",
             sizes: "512x512",
-            type: "image/png",
+            type: "image/svg",
           },
         ],
       },
