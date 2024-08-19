@@ -20,6 +20,12 @@ export const Nav = () => {
         <Link to="/translate" className="[&.active]:font-bold">
           Translate
         </Link>{" "}
+        <Link to="/language" className="[&.active]:font-bold">
+          Language
+        </Link>{" "}
+        <Link to="/converse" className="[&.active]:font-bold">
+          Converse
+        </Link>{" "}
         <Link to="/project" className="[&.active]:font-bold">
           Project
         </Link>

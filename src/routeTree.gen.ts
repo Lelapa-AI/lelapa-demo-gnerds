@@ -13,11 +13,13 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ConverseImport } from './routes/converse'
 
 // Create Virtual Routes
 
 const TranslateLazyImport = createFileRoute('/translate')()
 const ProjectLazyImport = createFileRoute('/project')()
+const LanguageLazyImport = createFileRoute('/language')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
@@ -31,6 +33,16 @@ const ProjectLazyRoute = ProjectLazyImport.update({
   path: '/project',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/project.lazy').then((d) => d.Route))
+
+const LanguageLazyRoute = LanguageLazyImport.update({
+  path: '/language',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/language.lazy').then((d) => d.Route))
+
+const ConverseRoute = ConverseImport.update({
+  path: '/converse',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -46,6 +58,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/converse': {
+      id: '/converse'
+      path: '/converse'
+      fullPath: '/converse'
+      preLoaderRoute: typeof ConverseImport
+      parentRoute: typeof rootRoute
+    }
+    '/language': {
+      id: '/language'
+      path: '/language'
+      fullPath: '/language'
+      preLoaderRoute: typeof LanguageLazyImport
       parentRoute: typeof rootRoute
     }
     '/project': {
@@ -69,6 +95,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
+  ConverseRoute,
+  LanguageLazyRoute,
   ProjectLazyRoute,
   TranslateLazyRoute,
 })
@@ -82,12 +110,20 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.jsx",
       "children": [
         "/",
+        "/converse",
+        "/language",
         "/project",
         "/translate"
       ]
     },
     "/": {
       "filePath": "index.lazy.jsx"
+    },
+    "/converse": {
+      "filePath": "converse.jsx"
+    },
+    "/language": {
+      "filePath": "language.lazy.jsx"
     },
     "/project": {
       "filePath": "project.lazy.jsx"
