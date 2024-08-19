@@ -6,3 +6,4 @@ export * from "./nav";
 export * from "./slider";
 export * from "./slider-card";
 export * from "./sub-heading";
+export * from "./paragraph";

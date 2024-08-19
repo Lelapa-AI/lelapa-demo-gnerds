@@ -1,11 +1,12 @@
 import { DoubleDropdown, SubHeading } from "../common";
+import Paragraph from "../common/paragraph";
 import { PageLayout } from "../templates";
 
 export const Translate = () => {
   return (
     <PageLayout hasBack>
       <SubHeading title="Translate" />
-      Now you can translate to South African Languages
+      <Paragraph/>
       <DoubleDropdown options={[{ name: "English" }, { name: "Spanish" }]} />
     </PageLayout>
   );
