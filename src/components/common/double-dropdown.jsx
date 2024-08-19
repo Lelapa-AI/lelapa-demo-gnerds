@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 export const DoubleDropdown = ({ options }) => {
   return (
-    <section className="flex items-center px-2 text-light-white gap-2 justify-between border rounded-lg h-10">
+    <section className="flex items-center px-2 text-black gap-2 justify-between bg-light-grey rounded-xl h-10">
       <Menu>
         <MenuButton className="flex items-center gap-2">
           <p className="text-xs">{options?.[0]?.name}</p>

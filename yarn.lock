@@ -1581,10 +1581,10 @@
   resolved "https://registry.npmjs.org/@tanstack/history/-/history-1.45.3.tgz"
   integrity sha512-n4XXInV9irIq0obRvINIkESkGk280Q+xkIIbswmM0z9nAu2wsIRZNvlmPrtYh6bgNWtItOWWoihFUjLTW8g6Jg==
 
-"@tanstack/query-core@5.51.17":
-  version "5.51.17"
-  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.51.17.tgz"
-  integrity sha512-AtVNOgVrZNz4C7RzMfx7sCn1/gf0Ype4nX8UP2BOh0C2tTMszwXk98iCLRacTn5vTRNJCZxz3fgEcTJq0uv8GQ==
+"@tanstack/query-core@5.51.24":
+  version "5.51.24"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.51.24.tgz#da901637c8652ba5703b92bd07496e7c9ae27836"
+  integrity sha512-qtIR0FMHUDIWyIQw87q4C+so7XaN59MsGfWrc6rgi2VTHrVZF3Hd0St2dbpqRetHf6XW5yY5lzTrXpTilPlxUg==
 
 "@tanstack/react-form@^0.29.2":
   version "0.29.2"
@@ -1596,12 +1596,12 @@
     "@tanstack/react-store" "^0.5.5"
     decode-formdata "^0.7.5"
 
-"@tanstack/react-query@^5.51.18":
-  version "5.51.18"
-  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.51.18.tgz"
-  integrity sha512-l/PF3X6Coi53kEDpL2XEU0x+y3szOk/oKWSHMlyy8tyUHviaIg8tJ6O4Cc1AjLAhbyTG1a+bZobdSuLXzYTt/w==
+"@tanstack/react-query@^5.51.24":
+  version "5.51.24"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.51.24.tgz#11385bee6b83a2d0ed6d5d03e16aab1cdf2cc24f"
+  integrity sha512-sW1qRwoCDqOFku67xng4Y5z6NPK1DS347jR4RiX9wFHrmyqpbXgUjPIjT3fodezdJAaSJD/6CvWb0cl05J8zNQ==
   dependencies:
-    "@tanstack/query-core" "5.51.17"
+    "@tanstack/query-core" "5.51.24"
 
 "@tanstack/react-router@^1.45.14":
   version "1.46.0"
