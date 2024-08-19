@@ -1,1 +1,1 @@
-export const FULLSCREEN_ROUTES = ["/", "/home", "/translate"];
+export const FULLSCREEN_ROUTES = ["/", "/home"];
