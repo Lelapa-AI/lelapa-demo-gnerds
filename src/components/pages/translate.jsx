@@ -1,3 +1,11 @@
+import { DoubleDropdown, SubHeading } from "../common";
+import { PageLayout } from "../templates";
+
 export const Translate = () => {
-  return <div>Translate</div>;
+  return (
+    <PageLayout hasBack>
+      <SubHeading title="Translate" />
+      <DoubleDropdown />
+    </PageLayout>
+  );
 };
