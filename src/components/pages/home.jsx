@@ -1,9 +1,14 @@
 import { SliderCarousel, Button } from "../../components";
 import { ConverseBg, TranscribeBg, TranslateBg } from "../../assets/images";
 
+import { useNavigate } from "@tanstack/react-router";
+
 export const Home = () => {
+  const navigate = useNavigate();
+  const goToTranslate = () => navigate({ to: "/translate" });
+
   return (
-    <section className="flex flex-col gap-3 px-10">
+    <section className="flex flex-col gap-3 px-10 py-4">
       <SliderCarousel
         cardsData={[
           {
@@ -24,7 +29,7 @@ export const Home = () => {
         ]}
       />
       <section className="bottom-20 left-0 right-0 absolute flex justify-center items-center">
-        <Button variant="gradient" className="lg:w-2/3">
+        <Button variant="gradient" onClick={goToTranslate} className="lg:w-2/3">
           Get Started
         </Button>
       </section>

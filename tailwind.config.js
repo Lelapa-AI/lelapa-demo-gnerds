@@ -12,6 +12,7 @@ export default {
       error: "#FF0000",
       "light-yellow": "#FFC73C",
       "light-white": "#F6F6F6",
+      grey: "#CFCFCF",
     },
     extend: {},
   },

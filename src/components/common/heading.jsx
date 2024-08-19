@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 export const Heading = ({ title }) => {
-  return <h1 className="font-extrabold text-6xl py-1">{title}</h1>;
+  return <h1 className="font-bold text-4xl text-primary py-1">{title}</h1>;
 };
 
 Heading.propTypes = {
