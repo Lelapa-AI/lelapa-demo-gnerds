@@ -10,7 +10,6 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      theme_color: "#161719",
       devOptions: {
         enabled: true,
       },
