@@ -5,7 +5,7 @@ export const Translate = () => {
   return (
     <PageLayout hasBack>
       <SubHeading title="Translate" />
-      <DoubleDropdown />
+      <DoubleDropdown options={[{ name: "English" }, { name: "Spanish" }]} />
     </PageLayout>
   );
 };
