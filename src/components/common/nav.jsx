@@ -6,7 +6,11 @@ import { IoIosCamera } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
 import { SiGoogletasks } from "react-icons/si";
 
-export const Nav = ({ fullscreen }) => {
+import { useScreen } from "../../hooks";
+
+export const Nav = () => {
+  const { isFullScreen } = useScreen();
+
   return (
     <>
       <nav className="web invisible h-0 lg:visible lg:h-fit">
@@ -20,7 +24,8 @@ export const Nav = ({ fullscreen }) => {
           Project
         </Link>
       </nav>
-      {!fullscreen && (
+
+      {!isFullScreen && (
         <nav className="mobile absolute w-full bottom-0 visible lg:hidden flex justify-evenly items-center text-xs px-2 py-2">
           <Link to="/" className="[&.active]:font-bold [&.active]:text-primary">
             {({ isActive }) => (

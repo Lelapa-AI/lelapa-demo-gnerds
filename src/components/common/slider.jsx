@@ -14,7 +14,7 @@ export const SliderCarousel = ({ cardsData }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     dotsClass: "slick-dots",
-    className: "flex",
+    className: "flex gap-2 items-center",
     dotsColor: "red",
   };
 

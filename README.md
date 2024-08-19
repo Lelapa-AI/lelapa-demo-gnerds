@@ -1,5 +1,7 @@
 # lelapa-demo-gnerds
 
+Live Demo 👉🏾 [:computer:](https://ringa-app.netlify.app/)
+
 ### Project Directory
 
 - assets > images & icons
@@ -24,5 +26,4 @@
 ### Tickets
 
 [Kanban Board](https://sharing.clickup.com/9015488560/b/h/8cnuw1g-515/9fee79aa5c2c747)
-
 
