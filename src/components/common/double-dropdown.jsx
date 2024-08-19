@@ -9,7 +9,7 @@ export const DoubleDropdown = ({ options }) => {
     <section className="flex items-center px-2 text-light-white gap-2 justify-between border rounded-lg h-10">
       <Menu>
         <MenuButton className="flex items-center gap-2">
-          <p>{options?.[0]?.name}</p>
+          <p className="text-xs">{options?.[0]?.name}</p>
           <IoChevronDown />
         </MenuButton>
         <MenuItems
@@ -26,7 +26,7 @@ export const DoubleDropdown = ({ options }) => {
       <IoIosSwap className="w-5 h-5" />
       <Menu>
         <MenuButton className="flex items-center gap-2">
-          <p>{options?.[1]?.name}</p>
+          <p className="text-xs">{options?.[1]?.name}</p>
           <IoChevronDown />
         </MenuButton>
         <MenuItems
