@@ -1,14 +1,14 @@
-import { SliderCarousel, Button } from "../../components";
-import { ConverseBg, TranscribeBg, TranslateBg } from "../../assets/images";
-
 import { useNavigate } from "@tanstack/react-router";
+
+import { SliderCarousel, Button, PageLayout } from "../../components";
+import { ConverseBg, TranscribeBg, TranslateBg } from "../../assets/images";
 
 export const Home = () => {
   const navigate = useNavigate();
   const goToTranslate = () => navigate({ to: "/translate" });
 
   return (
-    <section className="flex flex-col gap-3 px-10 py-4">
+    <PageLayout>
       <SliderCarousel
         cardsData={[
           {
@@ -33,6 +33,6 @@ export const Home = () => {
           Get Started
         </Button>
       </section>
-    </section>
+    </PageLayout>
   );
 };
