@@ -1,3 +1,10 @@
+import { Heading } from "../common";
+import { PageLayout } from "../templates";
+
 export const Translate = () => {
-  return <div>Translate</div>;
+  return (
+    <PageLayout hasBack>
+      <Heading title="Translate" />
+    </PageLayout>
+  );
 };
