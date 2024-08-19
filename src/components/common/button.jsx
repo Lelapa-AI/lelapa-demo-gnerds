@@ -13,7 +13,7 @@ export const Button = ({
         "border border-primary text-light-white  px-4 py-2 rounded-md text-sm";
       break;
     case "text":
-      _className = "text-primary px-4 py-2 text-sm";
+      _className = "text-primary text-sm w-fit";
       break;
     case "gradient":
       _className =

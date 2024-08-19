@@ -9,7 +9,7 @@ export const Back = () => {
   const goBack = () => navigate({ to: "/" });
 
   return (
-    <Button variant="text" className="flex px-0" onClick={goBack}>
+    <Button variant="text" className="flex" onClick={goBack}>
       <section className="flex gap-2 justify-center items-center">
         <IoArrowBackCircleOutline className="w-6 h-6 text-primary" />
         <span className="text-xs text-light-white">Back</span>

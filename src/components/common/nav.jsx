@@ -30,6 +30,7 @@ export const Nav = () => {
           Project
         </Link>
       </nav>
+
       {!isFullScreen && (
         <nav className="mobile absolute w-full bottom-0 visible lg:hidden flex justify-evenly items-center text-xs px-2 py-2">
           <Link to="/" className="[&.active]:font-bold [&.active]:text-primary">
