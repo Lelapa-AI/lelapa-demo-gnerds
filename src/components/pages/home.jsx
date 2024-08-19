@@ -1,9 +1,9 @@
-import { SliderCarousel } from "../../components";
+import { SliderCarousel, Button } from "../../components";
 import { ConverseBg, TranscribeBg, TranslateBg } from "../../assets/images";
 
 export const Home = () => {
   return (
-    <div>
+    <section className="flex flex-col gap-3 px-10">
       <SliderCarousel
         cardsData={[
           {
@@ -23,6 +23,11 @@ export const Home = () => {
           },
         ]}
       />
-    </div>
+      <section className="bottom-20 left-0 right-0 absolute flex justify-center items-center">
+        <Button variant="gradient" className="lg:w-2/3">
+          Get Started
+        </Button>
+      </section>
+    </section>
   );
 };
