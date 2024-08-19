@@ -1,11 +1,9 @@
 import PropTypes from "prop-types";
 
-const Paragraph = () => {
-    return <p className="font-semibold text-sm text-center">Now you can translate to South African Languages</p>;
+export const P = ({ children }) => {
+  return <p className="text-xs">{children}</p>;
 };
 
-Paragraph.propTypes = {
-    title: PropTypes.string.isRequired,
+P.propTypes = {
+  children: PropTypes.node.isRequired,
 };
-
-export default Paragraph;
