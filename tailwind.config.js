@@ -7,6 +7,7 @@ export default {
       secondary: "#FCD34D",
       tertiary: "#21C8F6",
       quaternary: "#637BFF",
+      blue: "#003366",
       background: "#161719",
       success: "#00FF00",
       error: "#FF0000",

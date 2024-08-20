@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import PropTypes from "prop-types";
 import { IoHome } from "react-icons/io5";
 import { MdOutlineTranslate } from "react-icons/md";
 import { IoIosCamera } from "react-icons/io";
@@ -99,8 +98,4 @@ export const Nav = () => {
       )}
     </>
   );
-};
-
-Nav.propTypes = {
-  fullscreen: PropTypes.bool.isRequired,
 };

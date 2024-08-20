@@ -1,6 +1,6 @@
 import { Field, Formik } from "formik";
 
-import { DoubleDropdown } from "../common";
+import { DoubleDropdown, InputTextArea } from "../common";
 
 export const TranslateForm = () => {
   return (
@@ -33,9 +33,17 @@ export const TranslateForm = () => {
         <form onSubmit={handleSubmit}>
           <Field
             component={DoubleDropdown}
-            options={[{ name: "English" }, { name: "Afrikaans" }]}
+            options={[
+              { name: "English" },
+              { name: "Afrikaans" },
+              {
+                name: "Zulu",
+              },
+              { name: "Xhosa" },
+            ]}
           />
-          {errors.email && touched.email && errors.email}
+          <Field component={InputTextArea} language={values?.fromLang} />
+          {errors.fromLang && touched.fromLang && errors.fromLang}
         </form>
       )}
     </Formik>

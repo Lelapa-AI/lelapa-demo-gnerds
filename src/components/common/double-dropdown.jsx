@@ -6,19 +6,19 @@ import PropTypes from "prop-types";
 
 export const DoubleDropdown = ({ options }) => {
   return (
-    <section className="flex items-center px-2 text-black gap-2 justify-between bg-light-grey rounded-xl h-10">
+    <section className="flex items-center px-2 text-[black] gap-2 justify-between bg-light-white rounded-xl h-10">
       <Menu>
-        <MenuButton className="flex items-center gap-2">
+        <MenuButton className="flex items-center gap-2 focus:bg-light-white focus:rounded-xl">
           <p className="text-xs">{options?.[0]?.name}</p>
           <IoChevronDown />
         </MenuButton>
         <MenuItems
           anchor="bottom start"
-          className="min-w-fit px-2 mt-3 rounded-xl border border-white/5 bg-white/5 flex flex-col gap-1 bg text-light-white py-2 divide-y divide-gray "
+          className="min-w-32 px-2 mt-3 rounded-xl border border-white/5 bg-white/5 flex flex-col gap-1 bg text-light-white py-2 divide-y divide-gray "
         >
           {map(options, ({ name }) => (
             <MenuItem key={name}>
-              <p>{name}</p>
+              <p className="text-black text-xs">{name}</p>
             </MenuItem>
           ))}
         </MenuItems>
@@ -26,12 +26,12 @@ export const DoubleDropdown = ({ options }) => {
       <IoIosSwap className="w-5 h-5" />
       <Menu>
         <MenuButton className="flex items-center gap-2">
-          <p className="text-xs">{options?.[1]?.name}</p>
+          <p className="text-xs text-black">{options?.[1]?.name}</p>
           <IoChevronDown />
         </MenuButton>
         <MenuItems
           anchor="bottom start"
-          className="min-w-fit px-2 mt-3 rounded-xl border border-white/5 bg-white/5 flex flex-col gap-1 bg text-light-white py-2 divide-y divide-gray "
+          className="min-w-32 px-2 mt-3 rounded-xl border border-white/5 bg-white/5 flex flex-col gap-1 bg text-light-white py-2 divide-y divide-gray "
         >
           {map(options, ({ name }) => (
             <MenuItem key={name}>
