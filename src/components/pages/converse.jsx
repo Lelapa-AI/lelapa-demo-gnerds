@@ -5,7 +5,18 @@ export const Converse = () => {
   return (
     <PageLayout hasBack>
       <Heading title="Converse" />
-      <DoubleDropdown options={[{ name: "English" }, { name: "Spanish" }]} />
+      <DoubleDropdown
+        options={[
+          { name: "English" },
+          { name: "Swati" },
+          {
+            name: "Zulu",
+          },
+          { name: "Xhosa" },
+        ]}
+        firstOption="English"
+        secondOption="Swati"
+      />
     </PageLayout>
   );
 };

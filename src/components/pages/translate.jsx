@@ -6,6 +6,8 @@ import { LanguageDropdown } from "../forms/language-dropdown";
 import { Button } from "../../components";
 import { MdVolumeUp, MdEdit } from "react-icons/md";
 import { IoMdMic } from "react-icons/io";
+import { MdContentCopy } from "react-icons/md";
+import { FaShareSquare } from "react-icons/fa";
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -56,12 +58,12 @@ const processApiResponse = (data, setOutState) => {
 };
 
 export const Translate = () => {
-  const [inputTextState, setInputTextState] = useState("English"),
-    [outputTextState, setOutputTextState] = useState("English");
+  const [inputTextState, setInputTextState] = useState("English");
+  const [outputTextState, setOutputTextState] = useState("English");
 
-  const [textState, setTextState] = useState(""),
-    [outState, setOutState] = useState(""),
-    [isLoading, setIsLoading] = useState(false); // Add loading state
+  const [textState, setTextState] = useState("");
+  const [outState, setOutState] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
 
   const translate = async () => {
     setIsLoading(true); // Start loading
@@ -85,6 +87,13 @@ export const Translate = () => {
     } finally {
       setIsLoading(false); // Stop loading
     }
+  };
+
+  const copyToClipboard = () => navigator.clipboard.writeText(outState);
+
+  const shareTextToWhatsApp = () => {
+    const url = `https://api.whatsapp.com/send?text=${outState}`;
+    window.open(url, "_blank");
   };
 
   return (
@@ -131,13 +140,22 @@ export const Translate = () => {
         </section>
       </div>
 
-      <div className="rounded-lg bg-light-white text-[black] flex flex-col h-36 px-2">
+      <div className="rounded-lg relative bg-light-white text-[black] flex flex-col h-36 px-2">
         <div className="flex items-center justify-between">
           <section className="bg-light-white">{outputTextState}</section>
           <MdVolumeUp color="black" />
         </div>
 
         {isLoading ? <p>Loading...</p> : <p>{outState}</p>}
+
+        <section className="absolute flex right-0 bottom-2 items-center gap-2 px-2">
+          <Button onClick={copyToClipboard} variant="text">
+            <MdContentCopy className="text-[black] w-5 h-5 hover:text-primary" />
+          </Button>
+          <Button variant="text" onClick={shareTextToWhatsApp}>
+            <FaShareSquare className="text-[black] w-5 h-5 hover:text-primary" />
+          </Button>
+        </section>
       </div>
     </PageLayout>
   );

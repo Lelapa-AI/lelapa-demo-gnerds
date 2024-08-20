@@ -5,7 +5,11 @@ export const Language = () => {
   return (
     <PageLayout hasBack>
       <Heading title="Language" />
-      <DoubleDropdown options={[{ name: "English" }, { name: "Spanish" }]} />
+      <DoubleDropdown
+        options={[{ name: "English" }, { name: "Swati" }]}
+        firstOption="English"
+        secondOption="Swati"
+      />
     </PageLayout>
   );
 };

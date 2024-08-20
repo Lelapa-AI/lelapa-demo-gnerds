@@ -53,4 +53,6 @@ export const DoubleDropdown = ({
 DoubleDropdown.propTypes = {
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
+  firstOption: PropTypes.string.isRequired,
+  secondOption: PropTypes.string.isRequired,
 };

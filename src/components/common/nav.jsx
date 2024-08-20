@@ -7,7 +7,7 @@ import { SiGoogletasks } from "react-icons/si";
 
 import { useScreen } from "../../hooks";
 
-export const Nav = () => {
+export const Nav = () => { 
   const { isFullScreen } = useScreen();
 
   return (
