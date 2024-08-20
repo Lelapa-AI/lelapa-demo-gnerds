@@ -5,7 +5,7 @@ import { DoubleDropdown, InputTextArea } from "../common";
 export const TranslateForm = () => {
   return (
     <Formik
-      initialValues={{ fromLang: "", toLang: "" }}
+      initialValues={{ fromLang: "English", toLang: "Swati" }}
       validate={(values) => {
         const errors = {};
         if (!values.fromLang) {
@@ -30,7 +30,7 @@ export const TranslateForm = () => {
         handleSubmit,
         isSubmitting,
       }) => (
-        <form onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-2 w-full" onSubmit={handleSubmit}>
           <Field
             component={DoubleDropdown}
             options={[
