@@ -131,12 +131,10 @@ export const Translate = () => {
         </section>
       </div>
 
-      <div style={{ color: "black", background: "#FFFBFE", height: "150px" }}>
-        <div className="flex items-center space-x-4">
-          <span>{outputTextState}</span>
-          <span>
-            <MdVolumeUp size={20} color="black" />
-          </span>
+      <div className="rounded-lg bg-light-white text-[black] flex flex-col h-36 px-2">
+        <div className="flex items-center justify-between">
+          <section className="bg-light-white">{outputTextState}</section>
+          <MdVolumeUp color="black" />
         </div>
 
         {isLoading ? <p>Loading...</p> : <p>{outState}</p>}
