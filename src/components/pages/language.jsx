@@ -1,15 +1,11 @@
-import { DoubleDropdown, Heading } from "../common";
+import { CameraCapture, SubHeading } from "../common";
 import { PageLayout } from "../templates";
 
 export const Language = () => {
   return (
     <PageLayout hasBack>
-      <Heading title="Language" />
-      <DoubleDropdown
-        options={[{ name: "English" }, { name: "Swati" }]}
-        firstOption="English"
-        secondOption="Swati"
-      />
+      <SubHeading title="Language" />
+      <CameraCapture />
     </PageLayout>
   );
 };

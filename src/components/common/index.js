@@ -1,5 +1,6 @@
 export * from "./back";
 export * from "./button";
+export * from "./camera";
 export * from "./double-dropdown";
 export * from "./heading";
 export * from "./input-text-area";

@@ -89,7 +89,9 @@ export const Translate = () => {
     }
   };
 
-  const copyToClipboard = () => navigator.clipboard.writeText(outState);
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(outState);
+  };
 
   const shareTextToWhatsApp = () => {
     const url = `https://api.whatsapp.com/send?text=${outState}`;
