@@ -15,16 +15,19 @@ export const Home = () => {
             title: "Translate",
             image: TranslateBg,
             description: "Translate to South African Languages",
+            route: "/translate",
           },
           {
-            title: "Transcribe",
+            title: "Language",
             image: TranscribeBg,
             description: "Translate to South African Languages",
+            route: "/language",
           },
           {
             title: "Converse",
             image: ConverseBg,
             description: "Translate to South African Languages",
+            route: "/converse",
           },
         ]}
       />

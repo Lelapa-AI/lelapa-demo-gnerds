@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { Link } from "@tanstack/react-router";
-
 import { Heading } from "./heading";
+import { Link } from "@tanstack/react-router";
 
 export const SliderCard = ({ title, description, image, route }) => (
   <Link to={route}>
