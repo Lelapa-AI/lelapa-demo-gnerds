@@ -11,12 +11,13 @@ const upload = (file, encodedString, fileSize) => {
   return authRequest.post(UPLOAD_URL, uploadDto(file, encodedString, fileSize));
 };
 
-const process = () => {
+const process = (webHookUrl, langToCode) => {
   return authRequest.post(PROCESS_URL, {
-    webhook: "WEBHOOK_URL",
-    language_code: "zul",
+    webhook: webHookUrl,
+    language_code: langToCode,
   });
 };
+
 export default {
   upload,
   process,

@@ -1,4 +1,4 @@
-import config from "../../../config";
+import { config } from "../../../config";
 import { authRequest } from "../auth";
 import { translationDto } from "./dto";
 

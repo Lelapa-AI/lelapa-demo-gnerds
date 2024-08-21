@@ -1,1 +1,1 @@
-export * from "./transcribe-service";
+export { default as TranscribeService } from "./transcribe-service";

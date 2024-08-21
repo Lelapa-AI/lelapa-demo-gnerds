@@ -29,8 +29,8 @@ export const Button = ({
 
   return (
     <button className={`${_className} ${className}`} {...rest}>
+      <ClipLoader size={8} className="w-5 h-5" loading={isLoading} />
       {children}
-      <ClipLoader loading={isLoading} />
     </button>
   );
 };

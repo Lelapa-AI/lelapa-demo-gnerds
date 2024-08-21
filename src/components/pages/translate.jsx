@@ -8,7 +8,7 @@ import { BeatLoader } from "react-spinners";
 
 import { LanguageDropdown } from "../forms/language-dropdown";
 import { Button, SubHeading, P, PageLayout } from "../../components";
-import { TranslateService } from "../../services";
+import { TranslateService, translationModel } from "../../services";
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -30,16 +30,19 @@ export const Translate = () => {
 
   const [textState, setTextState] = useState("");
 
-  const { data, isLoading, refetch } = useQuery(
-    ["translate", textState, inputTextState, outputTextState],
-    () =>
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["translate"],
+    queryFn: () =>
       TranslateService.translate(
         textState,
         langToCode[inputTextState],
         langToCode[outputTextState]
       ),
-    { enabled: enable }
-  );
+    enabled: enable,
+    select: translationModel,
+  });
+
+  console.log(data);
 
   const onStartTranslate = () => {
     setEnable(true);
@@ -47,15 +50,11 @@ export const Translate = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(
-      data?.translation?.[0]?.translated_text || ""
-    );
+    navigator.clipboard.writeText(data?.translation);
   };
 
   const shareTextToWhatsApp = () => {
-    const url = `https://api.whatsapp.com/send?text=${
-      data?.translation?.[0]?.translated_text || ""
-    }`;
+    const url = `https://api.whatsapp.com/send?text=${data?.translation}`;
     window.open(url, "_blank");
   };
 
@@ -111,11 +110,7 @@ export const Translate = () => {
           <MdVolumeUp color="black" />
         </div>
 
-        {isLoading ? (
-          <BeatLoader />
-        ) : (
-          <p>{data?.translation?.[0]?.translated_text}</p>
-        )}
+        {isLoading ? <BeatLoader /> : <p>{data?.translation}</p>}
 
         <section className="absolute flex right-0 bottom-2 items-center gap-2 px-2">
           <Button onClick={copyToClipboard} variant="text">
