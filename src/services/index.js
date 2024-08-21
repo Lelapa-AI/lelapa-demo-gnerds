@@ -1,1 +1,2 @@
-export { default as TranslateService } from "./translate";
+export * from "./translate";
+export * from "./transcribe";
