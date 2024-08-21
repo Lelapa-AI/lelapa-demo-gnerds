@@ -1,13 +1,19 @@
-import { SubHeading, P } from "../common";
-import { TranslateForm } from "../forms";
-import { PageLayout } from "../templates";
 import { useState } from "react";
-import { LanguageDropdown } from "../forms/language-dropdown";
-import { Button } from "../../components";
 import { MdVolumeUp, MdEdit } from "react-icons/md";
 import { IoMdMic } from "react-icons/io";
 import { MdContentCopy } from "react-icons/md";
 import { FaShareSquare } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+
+import { LanguageDropdown } from "../forms/language-dropdown";
+import {
+  Button,
+  SubHeading,
+  P,
+  TranslateForm,
+  PageLayout,
+} from "../../components";
+import { TranslateService } from "../../services";
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -58,35 +64,23 @@ const processApiResponse = (data, setOutState) => {
 };
 
 export const Translate = () => {
+  const [enable, setEnable] = useState(false);
   const [inputTextState, setInputTextState] = useState("English");
   const [outputTextState, setOutputTextState] = useState("English");
 
   const [textState, setTextState] = useState("");
   const [outState, setOutState] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Add loading state
 
-  const translate = async () => {
-    setIsLoading(true); // Start loading
+  const { data, isLoading, refetch } = useQuery(
+    ["translate", textState, inputTextState, outputTextState],
+    () =>
+      TranslateService.translate(textState, inputTextState, outputTextState),
+    { enabled: enable }
+  );
 
-    const url = "https://vulavula-services.lelapa.ai/api/v1/translate/process";
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlMDMwYjY3MGVhOTRhMGE5NGFhYTNhY2EwZDBlNjY1IiwiY2xpZW50X2lkIjoyMSwicmVxdWVzdHNfcGVyX21pbnV0ZSI6MCwibGFzdF9yZXF1ZXN0X3RpbWUiOm51bGx9.o2zYkTIOPMtcSJti0lgCT3d-nr5PWypbZuAmDCWzIBU";
-
-    const headers = {
-      "Content-Type": "application/json",
-      "X-CLIENT-TOKEN": token,
-    };
-
-    const body = prepareRequestBody(textState, inputTextState, outputTextState);
-
-    try {
-      const data = await makeApiRequest(url, headers, body);
-      processApiResponse(data, setOutState);
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setIsLoading(false); // Stop loading
-    }
+  const onStartTranslate = () => {
+    setEnable(true);
+    refetch();
   };
 
   const copyToClipboard = () => {
@@ -136,8 +130,13 @@ export const Translate = () => {
         <br />
         <section className="flex items-center justify-between px-2">
           <IoMdMic className="bg-primary rounded-full p-2 text-[white] w-8 h-8" />
-          <Button onClick={translate} disabled={isLoading} variant="gradient">
-            {isLoading ? "Translating..." : "Translate"}
+          <Button
+            onClick={onStartTranslate}
+            disabled={isLoading}
+            variant="gradient"
+            isLoading={isLoading}
+          >
+            Translate
           </Button>
         </section>
       </div>

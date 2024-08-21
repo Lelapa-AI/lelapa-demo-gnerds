@@ -1,16 +1,18 @@
 import PropTypes from "prop-types";
+import { ClipLoader } from "react-spinners";
 
 export const Button = ({
   children,
   className = "",
   variant = "primary",
+  isLoading = false,
   ...rest
 }) => {
   let _className = "";
   switch (variant) {
     case "outline":
       _className =
-        "border border-primary text-light-white  px-4 py-2 rounded-md text-sm";
+        "border border-primary text-light-white px-4 py-2 rounded-md text-sm";
       break;
     case "text":
       _className = "text-primary text-sm w-fit";
@@ -28,6 +30,7 @@ export const Button = ({
   return (
     <button className={`${_className} ${className}`} {...rest}>
       {children}
+      <ClipLoader loading={isLoading} />
     </button>
   );
 };
@@ -36,5 +39,6 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   variant: PropTypes.oneOf(["outline", "text", "gradient", "primary"]),
+  isLoading: PropTypes.bool,
   ButtonProps: PropTypes.object,
 };

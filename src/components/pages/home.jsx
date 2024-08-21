@@ -29,7 +29,7 @@ export const Home = () => {
         ]}
       />
       <section className="bottom-20 left-0 right-0 absolute flex justify-center items-center">
-        <Button variant="gradient" onClick={goToTranslate} className="lg:w-2/3">
+        <Button variant="gradient" onClick={goToTranslate} className="w-1/3 lg:w-2/3">
           Get Started
         </Button>
       </section>
