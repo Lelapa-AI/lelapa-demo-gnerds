@@ -4,15 +4,10 @@ import { IoMdMic } from "react-icons/io";
 import { MdContentCopy } from "react-icons/md";
 import { FaShareSquare } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
+import { BeatLoader } from "react-spinners";
 
 import { LanguageDropdown } from "../forms/language-dropdown";
-import {
-  Button,
-  SubHeading,
-  P,
-  TranslateForm,
-  PageLayout,
-} from "../../components";
+import { Button, SubHeading, P, PageLayout } from "../../components";
 import { TranslateService } from "../../services";
 
 const langToCode = {
@@ -28,53 +23,21 @@ const langToCode = {
   Swahili: "swh_Latn",
 };
 
-// Helper function to prepare the request body
-const prepareRequestBody = (textState, inputTextState, outputTextState) => {
-  return JSON.stringify({
-    input_text: textState,
-    source_lang: langToCode[inputTextState],
-    target_lang: langToCode[outputTextState],
-  });
-};
-
-// Helper function to make the API request
-const makeApiRequest = async (url, headers, body) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: headers,
-    body: body,
-  });
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  console.log(response.status);
-  return response.json();
-};
-
-// Helper function to process the API response
-const processApiResponse = (data, setOutState) => {
-  const translationText = data["translation"];
-
-  if (translationText.length > 0) {
-    setOutState(translationText[0]["translated_text"]);
-  } else {
-    setOutState("");
-  }
-};
-
 export const Translate = () => {
   const [enable, setEnable] = useState(false);
   const [inputTextState, setInputTextState] = useState("English");
   const [outputTextState, setOutputTextState] = useState("English");
 
   const [textState, setTextState] = useState("");
-  const [outState, setOutState] = useState("");
 
   const { data, isLoading, refetch } = useQuery(
     ["translate", textState, inputTextState, outputTextState],
     () =>
-      TranslateService.translate(textState, inputTextState, outputTextState),
+      TranslateService.translate(
+        textState,
+        langToCode[inputTextState],
+        langToCode[outputTextState]
+      ),
     { enabled: enable }
   );
 
@@ -84,11 +47,15 @@ export const Translate = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(outState);
+    navigator.clipboard.writeText(
+      data?.translation?.[0]?.translated_text || ""
+    );
   };
 
   const shareTextToWhatsApp = () => {
-    const url = `https://api.whatsapp.com/send?text=${outState}`;
+    const url = `https://api.whatsapp.com/send?text=${
+      data?.translation?.[0]?.translated_text || ""
+    }`;
     window.open(url, "_blank");
   };
 
@@ -98,7 +65,6 @@ export const Translate = () => {
       <P className="text-xs">
         Now you can translate to South African Languages
       </P>
-      {/*  <TranslateForm onSubmit={translate} /> */}
       <div>
         <LanguageDropdown
           inputLanguageState={inputTextState}
@@ -107,7 +73,6 @@ export const Translate = () => {
           setOutputLanguageState={setOutputTextState}
         />
       </div>
-
       <div className="rounded-lg p-2 text-[black] bg-light-white">
         <div className="flex items-center space-x-4">
           <span>{inputTextState}</span>
@@ -118,7 +83,6 @@ export const Translate = () => {
             <MdEdit size={20} color="black" />
           </span>
         </div>
-
         <textarea
           name="input-text"
           id="input-text"
@@ -147,7 +111,11 @@ export const Translate = () => {
           <MdVolumeUp color="black" />
         </div>
 
-        {isLoading ? <p>Loading...</p> : <p>{outState}</p>}
+        {isLoading ? (
+          <BeatLoader />
+        ) : (
+          <p>{data?.translation?.[0]?.translated_text}</p>
+        )}
 
         <section className="absolute flex right-0 bottom-2 items-center gap-2 px-2">
           <Button onClick={copyToClipboard} variant="text">
