@@ -20,12 +20,13 @@ export const SliderCarousel = ({ cardsData }) => {
 
   return (
     <Slider {...settings}>
-      {map(cardsData, ({ title, image, description }, index) => (
+      {map(cardsData, ({ title, image, description, route }, index) => (
         <SliderCard
           key={index}
           title={title}
           image={image}
           description={description}
+          route={route}
         />
       ))}
     </Slider>
