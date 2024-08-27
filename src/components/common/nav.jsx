@@ -4,10 +4,11 @@ import { MdOutlineTranslate } from "react-icons/md";
 import { IoIosCamera } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
 import { SiGoogletasks } from "react-icons/si";
+import { CiMicrophoneOn } from "react-icons/ci";
 
 import { useScreen } from "../../hooks";
 
-export const Nav = () => { 
+export const Nav = () => {
   const { isFullScreen } = useScreen();
 
   return (
@@ -24,6 +25,9 @@ export const Nav = () => {
         </Link>{" "}
         <Link to="/converse" className="[&.active]:font-bold">
           Converse
+        </Link>{" "}
+        <Link to="/converse" className="[&.active]:font-bold">
+          Transcribe
         </Link>{" "}
         <Link to="/project" className="[&.active]:font-bold">
           Project
@@ -78,6 +82,19 @@ export const Nav = () => {
                   className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
                 />
                 Converse
+              </section>
+            )}
+          </Link>
+          <Link
+            to="/transcribe"
+            className="[&.active]:font-bold [&.active]:text-primary"
+          >
+            {({ isActive }) => (
+              <section className="flex flex-col justify-center items-center">
+                <CiMicrophoneOn
+                  className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+                />
+                Transcribe
               </section>
             )}
           </Link>

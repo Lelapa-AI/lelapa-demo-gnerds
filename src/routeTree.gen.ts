@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TranscribeImport } from './routes/transcribe'
 import { Route as ConverseImport } from './routes/converse'
 
 // Create Virtual Routes
@@ -38,6 +39,11 @@ const LanguageLazyRoute = LanguageLazyImport.update({
   path: '/language',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/language.lazy').then((d) => d.Route))
+
+const TranscribeRoute = TranscribeImport.update({
+  path: '/transcribe',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ConverseRoute = ConverseImport.update({
   path: '/converse',
@@ -65,6 +71,13 @@ declare module '@tanstack/react-router' {
       path: '/converse'
       fullPath: '/converse'
       preLoaderRoute: typeof ConverseImport
+      parentRoute: typeof rootRoute
+    }
+    '/transcribe': {
+      id: '/transcribe'
+      path: '/transcribe'
+      fullPath: '/transcribe'
+      preLoaderRoute: typeof TranscribeImport
       parentRoute: typeof rootRoute
     }
     '/language': {
@@ -96,6 +109,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   ConverseRoute,
+  TranscribeRoute,
   LanguageLazyRoute,
   ProjectLazyRoute,
   TranslateLazyRoute,
@@ -111,6 +125,7 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/converse",
+        "/transcribe",
         "/language",
         "/project",
         "/translate"
@@ -121,6 +136,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/converse": {
       "filePath": "converse.jsx"
+    },
+    "/transcribe": {
+      "filePath": "transcribe.jsx"
     },
     "/language": {
       "filePath": "language.lazy.jsx"
