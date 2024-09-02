@@ -13,24 +13,81 @@ export const Nav = () => {
 
   return (
     <>
-      <nav className="web invisible h-0 lg:visible lg:h-fit">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{" "}
-        <Link to="/translate" className="[&.active]:font-bold">
-          Translate
-        </Link>{" "}
-        <Link to="/language" className="[&.active]:font-bold">
-          Language
-        </Link>{" "}
-        <Link to="/converse" className="[&.active]:font-bold">
-          Converse
-        </Link>{" "}
-        <Link to="/converse" className="[&.active]:font-bold">
-          Transcribe
-        </Link>{" "}
-        <Link to="/project" className="[&.active]:font-bold">
-          Project
+      <nav className="web flex items-center justify-center gap-5 invisible h-0 lg:visible lg:h-fit py-2">
+        <Link to="/" className="[&.active]:font-bold [&.active]:text-primary">
+          {({ isActive }) => (
+            <section className="flex gap-1 items-center min-w-min">
+              <IoHome
+                className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+              />
+              Home
+            </section>
+          )}
+        </Link>
+        <Link
+          to="/translate"
+          className="[&.active]:font-bold [&.active]:text-primary"
+        >
+          {({ isActive }) => (
+            <section className="flex justify-center items-center">
+              <MdOutlineTranslate
+                className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+              />
+              Translate
+            </section>
+          )}
+        </Link>
+        <Link
+          to="/language"
+          className="[&.active]:font-bold [&.active]:text-primary"
+        >
+          {({ isActive }) => (
+            <section className="flex justify-center items-center">
+              <IoIosCamera
+                className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+              />
+              Language
+            </section>
+          )}
+        </Link>
+        <Link
+          to="/converse"
+          className="[&.active]:font-bold [&.active]:text-primary"
+        >
+          {({ isActive }) => (
+            <section className="flex justify-center items-center">
+              <IoPeople
+                className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+              />
+              Converse
+            </section>
+          )}
+        </Link>
+        <Link
+          to="/transcribe"
+          className="[&.active]:font-bold [&.active]:text-primary"
+        >
+          {({ isActive }) => (
+            <section className="flex justify-center items-center">
+              <IoIosCamera
+                className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+              />
+              Transcribe
+            </section>
+          )}
+        </Link>
+        <Link
+          to="/project"
+          className="[&.active]:font-bold [&.active]:text-primary"
+        >
+          {({ isActive }) => (
+            <section className="flex justify-center items-center">
+              <SiGoogletasks
+                className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+              />
+              Status
+            </section>
+          )}
         </Link>
       </nav>
 
@@ -78,7 +135,7 @@ export const Nav = () => {
           >
             {({ isActive }) => (
               <section className="flex flex-col justify-center items-center">
-                <IoPeople
+                <CiMicrophoneOn
                   className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
                 />
                 Converse
