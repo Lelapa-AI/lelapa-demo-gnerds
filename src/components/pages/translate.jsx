@@ -1,20 +1,16 @@
 import { useState } from "react";
 import { MdVolumeUp, MdEdit, MdContentCopy } from "react-icons/md";
 import { IoMdMic } from "react-icons/io";
-import { FaShareSquare } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
 import toast, { Toaster } from "react-hot-toast";
 
-import { MdContentCopy } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import isEmpty from "lodash/isEmpty";
-import copy from "copy-to-clipboard";
 
 import { LanguageDropdown } from "../forms/language-dropdown";
 import { Button, SubHeading, P, PageLayout } from "../../components";
 import { TranslateService, translationModel } from "../../services";
-import { config } from "../../../config";
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -33,7 +29,6 @@ export const Translate = () => {
   const [enable, setEnable] = useState(false);
   const [inputTextState, setInputTextState] = useState("English");
   const [outputTextState, setOutputTextState] = useState("English");
-  const { whatsAppUrl } = config;
 
   const [textState, setTextState] = useState("");
 
