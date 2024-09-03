@@ -42,8 +42,6 @@ export const Translate = () => {
     select: translationModel,
   });
 
-  console.log(data);
-
   const onStartTranslate = () => {
     setEnable(true);
     refetch();

@@ -4,12 +4,14 @@ import { MdOutlineTranslate } from "react-icons/md";
 import { IoIosCamera } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
 import { SiGoogletasks } from "react-icons/si";
+import { useLocation } from "@tanstack/react-router";
 import { CiMicrophoneOn } from "react-icons/ci";
 
 import { useScreen } from "../../hooks";
 
 export const Nav = () => {
-  const { isFullScreen } = useScreen();
+  //const location = useLocation();
+  const { showBottomNav } = useScreen();
 
   return (
     <>
@@ -91,7 +93,7 @@ export const Nav = () => {
         </Link>
       </nav>
 
-      {!isFullScreen && (
+      {showBottomNav && (
         <nav className="mobile absolute w-full bottom-0 visible lg:hidden flex justify-evenly items-center text-xs px-2 py-2">
           <Link to="/" className="[&.active]:font-bold [&.active]:text-primary">
             {({ isActive }) => (
