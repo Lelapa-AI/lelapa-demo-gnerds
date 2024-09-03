@@ -6,9 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
 import toast, { Toaster } from "react-hot-toast";
 
+import { MdContentCopy } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
+import isEmpty from "lodash/isEmpty";
+import copy from "copy-to-clipboard";
+
 import { LanguageDropdown } from "../forms/language-dropdown";
 import { Button, SubHeading, P, PageLayout } from "../../components";
 import { TranslateService, translationModel } from "../../services";
+import { config } from "../../../config";
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -27,6 +33,7 @@ export const Translate = () => {
   const [enable, setEnable] = useState(false);
   const [inputTextState, setInputTextState] = useState("English");
   const [outputTextState, setOutputTextState] = useState("English");
+  const { whatsAppUrl } = config;
 
   const [textState, setTextState] = useState("");
 
@@ -123,8 +130,12 @@ export const Translate = () => {
           <Button onClick={copyToClipboard} variant="text">
             <MdContentCopy className="text-[black] w-5 h-5 hover:text-primary" />
           </Button>
-          <Button variant="text" onClick={shareTextToWhatsApp}>
-            <FaShareSquare className="text-[black] w-5 h-5 hover:text-primary" />
+          <Button
+            disabled={isEmpty(data?.translation)}
+            variant="text"
+            onClick={shareTextToWhatsApp}
+          >
+            <FaWhatsapp className="text-[black] w-5 h-5 hover:text-primary" />
           </Button>
         </section>
       </div>

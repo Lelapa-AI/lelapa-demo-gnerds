@@ -9,7 +9,7 @@ import { CiMicrophoneOn } from "react-icons/ci";
 import { useScreen } from "../../hooks";
 
 export const Nav = () => {
-  const { isFullScreen } = useScreen();
+  const { showBottomNav } = useScreen();
 
   return (
     <>
@@ -91,7 +91,7 @@ export const Nav = () => {
         </Link>
       </nav>
 
-      {!isFullScreen && (
+      {showBottomNav && (
         <nav className="mobile absolute w-full bottom-0 visible lg:hidden flex justify-evenly items-center text-xs px-2 py-2">
           <Link to="/" className="[&.active]:font-bold [&.active]:text-primary">
             {({ isActive }) => (
