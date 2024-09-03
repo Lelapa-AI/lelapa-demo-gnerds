@@ -2,13 +2,16 @@ import { useState } from "react";
 import { MdVolumeUp, MdEdit } from "react-icons/md";
 import { IoMdMic } from "react-icons/io";
 import { MdContentCopy } from "react-icons/md";
-import { FaShareSquare } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
+import { FaWhatsapp } from "react-icons/fa";
+import isEmpty from "lodash/isEmpty";
+import copy from "copy-to-clipboard";
 
 import { LanguageDropdown } from "../forms/language-dropdown";
 import { Button, SubHeading, P, PageLayout } from "../../components";
 import { TranslateService, translationModel } from "../../services";
+import { config } from "../../../config";
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -27,6 +30,7 @@ export const Translate = () => {
   const [enable, setEnable] = useState(false);
   const [inputTextState, setInputTextState] = useState("English");
   const [outputTextState, setOutputTextState] = useState("English");
+  const { whatsAppUrl } = config;
 
   const [textState, setTextState] = useState("");
 
@@ -48,11 +52,11 @@ export const Translate = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(data?.translation);
+    copy(data?.translation);
   };
 
   const shareTextToWhatsApp = () => {
-    const url = `https://api.whatsapp.com/send?text=${data?.translation}`;
+    const url = `${whatsAppUrl}/send?text=${data?.translation}`;
     window.open(url, "_blank");
   };
 
@@ -114,8 +118,12 @@ export const Translate = () => {
           <Button onClick={copyToClipboard} variant="text">
             <MdContentCopy className="text-[black] w-5 h-5 hover:text-primary" />
           </Button>
-          <Button variant="text" onClick={shareTextToWhatsApp}>
-            <FaShareSquare className="text-[black] w-5 h-5 hover:text-primary" />
+          <Button
+            disabled={isEmpty(data?.translation)}
+            variant="text"
+            onClick={shareTextToWhatsApp}
+          >
+            <FaWhatsapp className="text-[black] w-5 h-5 hover:text-primary" />
           </Button>
         </section>
       </div>
