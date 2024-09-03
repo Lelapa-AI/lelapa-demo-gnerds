@@ -4,13 +4,11 @@ import { MdOutlineTranslate } from "react-icons/md";
 import { IoIosCamera } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
 import { SiGoogletasks } from "react-icons/si";
-import { useLocation } from "@tanstack/react-router";
 import { CiMicrophoneOn } from "react-icons/ci";
 
 import { useScreen } from "../../hooks";
 
 export const Nav = () => {
-  //const location = useLocation();
   const { showBottomNav } = useScreen();
 
   return (
