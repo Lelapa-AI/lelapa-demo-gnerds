@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { MdVolumeUp, MdEdit } from "react-icons/md";
+import { MdVolumeUp, MdEdit, MdContentCopy } from "react-icons/md";
 import { IoMdMic } from "react-icons/io";
-import { MdContentCopy } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
 import { FaWhatsapp } from "react-icons/fa";
-import isEmpty from "lodash/isEmpty";
 import copy from "copy-to-clipboard";
+import isEmpty from "lodash/isEmpty";
+import toast, { Toaster } from "react-hot-toast";
 
+import { config } from "../../../config";
 import { LanguageDropdown } from "../forms/language-dropdown";
 import { Button, SubHeading, P, PageLayout } from "../../components";
 import { TranslateService, translationModel } from "../../services";
-import { config } from "../../../config";
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -30,9 +30,8 @@ export const Translate = () => {
   const [enable, setEnable] = useState(false);
   const [inputTextState, setInputTextState] = useState("English");
   const [outputTextState, setOutputTextState] = useState("English");
-  const { whatsAppUrl } = config;
-
   const [textState, setTextState] = useState("");
+  const { whatsAppUrl } = config;
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["translate"],
@@ -52,12 +51,21 @@ export const Translate = () => {
   };
 
   const copyToClipboard = () => {
-    copy(data?.translation);
+    if (data?.translation) {
+      copy(data?.translation);
+      toast.success("Text copied to clipboard!");
+    } else {
+      toast.error("No text to copy!");
+    }
   };
 
   const shareTextToWhatsApp = () => {
-    const url = `${whatsAppUrl}/send?text=${data?.translation}`;
-    window.open(url, "_blank");
+    if (data?.translation) {
+      const url = `${whatsAppUrl}/send?text=${data?.translation}`;
+      window.open(url, "_blank");
+    } else {
+      toast.error("No text to share!");
+    }
   };
 
   return (
@@ -127,6 +135,8 @@ export const Translate = () => {
           </Button>
         </section>
       </div>
+
+      <Toaster />
     </PageLayout>
   );
 };
