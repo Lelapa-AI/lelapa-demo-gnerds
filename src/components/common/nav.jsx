@@ -135,7 +135,7 @@ export const Nav = () => {
           >
             {({ isActive }) => (
               <section className="flex flex-col justify-center items-center">
-                <CiMicrophoneOn
+                <IoPeople
                   className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
                 />
                 Converse
