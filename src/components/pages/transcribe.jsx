@@ -1,9 +1,10 @@
 import { PageLayout } from "../templates";
+import { Heading } from "../common";
 
 export const Transcribe = () => {
   return (
-    <PageLayout>
-      <p>Transcribe</p>
+    <PageLayout hasBack>
+      <Heading title="Transcribe" />
     </PageLayout>
   );
 };

@@ -63,7 +63,7 @@ export const Translate = () => {
   return (
     <PageLayout hasBack>
       <SubHeading title="Translate" />
-      <P className="text-xs">
+      <P className="text-xs text-center">
         Now you can translate to South African Languages
       </P>
       <div>
