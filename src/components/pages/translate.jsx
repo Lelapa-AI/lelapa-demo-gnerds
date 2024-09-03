@@ -4,16 +4,14 @@ import { IoMdMic } from "react-icons/io";
 import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
 import { FaWhatsapp } from "react-icons/fa";
+import copy from "copy-to-clipboard";
+import isEmpty from "lodash/isEmpty";
 import toast, { Toaster } from "react-hot-toast";
 
 import { config } from "../../../config";
 import { LanguageDropdown } from "../forms/language-dropdown";
 import { Button, SubHeading, P, PageLayout } from "../../components";
 import { TranslateService, translationModel } from "../../services";
-import isEmpty from "lodash/isEmpty";
-import copy from "copy-to-clipboard";
-
-const { whatsAppUrl } = config;
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -32,8 +30,8 @@ export const Translate = () => {
   const [enable, setEnable] = useState(false);
   const [inputTextState, setInputTextState] = useState("English");
   const [outputTextState, setOutputTextState] = useState("English");
-
   const [textState, setTextState] = useState("");
+  const { whatsAppUrl } = config;
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["translate"],
