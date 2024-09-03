@@ -3,14 +3,17 @@ import { MdVolumeUp, MdEdit, MdContentCopy } from "react-icons/md";
 import { IoMdMic } from "react-icons/io";
 import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
+import { FaWhatsapp } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 
-import { FaWhatsapp } from "react-icons/fa";
-import isEmpty from "lodash/isEmpty";
-
+import { config } from "../../../config";
 import { LanguageDropdown } from "../forms/language-dropdown";
 import { Button, SubHeading, P, PageLayout } from "../../components";
 import { TranslateService, translationModel } from "../../services";
+import isEmpty from "lodash/isEmpty";
+import copy from "copy-to-clipboard";
+
+const { whatsAppUrl } = config;
 
 const langToCode = {
   "Northern Sotho": "nso_Latn",
@@ -51,7 +54,7 @@ export const Translate = () => {
 
   const copyToClipboard = () => {
     if (data?.translation) {
-      navigator.clipboard.writeText(data.translation);
+      copy(data?.translation);
       toast.success("Text copied to clipboard!");
     } else {
       toast.error("No text to copy!");
@@ -60,7 +63,7 @@ export const Translate = () => {
 
   const shareTextToWhatsApp = () => {
     if (data?.translation) {
-      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(data.translation)}`;
+      const url = `${whatsAppUrl}/send?text=${data?.translation}`;
       window.open(url, "_blank");
     } else {
       toast.error("No text to share!");
