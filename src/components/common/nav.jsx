@@ -13,7 +13,7 @@ export const Nav = () => {
 
   return (
     <>
-      <nav className="web flex items-center justify-center gap-5 invisible h-0 lg:visible lg:h-fit py-2">
+      <nav className="web flex items-center justify-center gap-8 invisible h-0 lg:visible lg:h-fit lg:py-4 lg:bg-background/90 drop-shadow-lg">
         <Link to="/" className="[&.active]:font-bold [&.active]:text-primary">
           {({ isActive }) => (
             <section className="flex gap-1 items-center min-w-min">
