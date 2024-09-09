@@ -71,7 +71,7 @@ export const Translate = () => {
       </div>
       <div className="rounded-lg p-2 text-[black] bg-light-white">
         <div className="flex items-center space-x-4">
-          <p><span className="text-xs font-semibold italic">From: </span>{inputTextState}</p>
+          <p><span className="text-l font-bold text-primary ">From: </span>{inputTextState}</p>
         </div>
         <textarea
           name="input-text"
@@ -96,7 +96,7 @@ export const Translate = () => {
       </div>
 
       <div className="rounded-lg relative bg-light-white text-[black] flex flex-col h-36 px-2">
-          <p><span className="text-xs font-semibold">To: </span>{outputTextState}</p>
+          <p><span className="text-l font-bold text-primary ">To: </span>{outputTextState}</p>
         {isLoading ? <BeatLoader /> : <p>{data?.translation}</p>}
         <section className="absolute flex right-0 bottom-2 items-center gap-2 px-2">
           <Button onClick={copyToClipboard} variant="text">

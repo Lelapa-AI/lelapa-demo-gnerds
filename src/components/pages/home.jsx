@@ -12,12 +12,14 @@ import { Button } from "../common";
 import TranscribeBg from "../../assets/images/transcribe.svg";
 import TranslateBg from "../../assets/images/translate.svg";
 import ConverseBg from "../../assets/images/converse.svg";
+import ChatBg from "../../assets/images/chat.svg";
 
 export const Home = () => {
   const navigate = useNavigate();
   const goToTranslate = () => navigate({ to: "/translate" });
   const goToTranscribe = () => navigate({ to: "/transcribe" });
   const goToConverse = () => navigate({ to: "/converse" });
+
   return (
     <div className="bg-background">
       <div className="max-w-[800px] mt-[-96px] bg-white w-full h-screen mx-auto items-center gap-3 flex flex-col justify-center">
@@ -48,16 +50,22 @@ export const Home = () => {
       <div className="w-full bg-primary py-16 px-4">
         <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
           <img className="w-[500px] mx-auto my-4" src={TranscribeBg} alt="/" />
-          <div className="flex flex-col gap-2 justify-center">
+          <div className="flex flex-col gap-4 justify-center">
             <p className="text-primary font-bold ">DATA ANALYTICS DASHBOARD</p>
             <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
               Start Talking and Let Us Do the Typing.
             </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatum molestiae delectus culpa hic assumenda, voluptate
-              reprehenderit dolore autem cum ullam sed odit perspiciatis.
-              Doloribus quos velit, eveniet ex deserunt fuga?
+              Say it in your language, and we'll translate it. Our service makes
+              translation easier than ever—just speak, and we’ll take care of
+              the rest.
+              <br />
+              <br />
+              Whether you're working on international projects, connecting with
+              people across borders, or simply need help with accurate
+              translations, we’re here to simplify the process. Fast, reliable,
+              and effortless, our voice-to-text translation tool breaks down
+              language barriers with ease.
             </p>
             <Button
               className="w-[200px] font-medium"
@@ -71,30 +79,20 @@ export const Home = () => {
       </div>
       <div className="w-full py-16 bg-background px-4">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-3">
-          <div className="lg:col-span-2 my-4">
+          <div className="lg:col-span-2 my-4 flex flex-col gap-2 justify-center ">
             <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
-              Want tips & tricks to optimize your flow?
+              Speak Freely, Translate Instantly
             </h1>
-            <p>Sign up to our newsletter and stay up to date.</p>
+            <p>
+              Turn your voice into seamless translations. Communicate
+              effortlessly across languages with our fast and accurate
+              voice-to-text service.
+            </p>
           </div>
           <div className="my-4">
             <div className="flex flex-col sm:flex-row items-center justify-between w-full">
-              <input
-                className="p-3 flex w-full rounded-md text-black"
-                type="email"
-                placeholder="Enter Email"
-              />
-              <Button
-                className="w-[200px] ml-3 my-6 px-6 py-3.5 font-medium"
-                variant="gradient"
-              >
-                Notify Me
-              </Button>
+              <img className="w-[300px] mx-auto my-4" src={ChatBg} alt="/" />
             </div>
-            <p>
-              We care bout the protection of your data. Read our{" "}
-              <span className="text-primary">Privacy Policy.</span>
-            </p>
           </div>
         </div>
       </div>
@@ -155,9 +153,10 @@ export const Home = () => {
         <div>
           <h1 className="w-full text-3xl font-bold text-primary">Vula-Ringa</h1>
           <p className="py-4">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit
-            ullam iste repellat consequatur libero reiciendis, blanditiis
-            accusantium.
+            Say goodbye to language barriers. With Vula-Ringa, speak naturally
+            in your language and let us provide real-time translations. Whether
+            you're connecting with friends, clients, or colleagues across the
+            globe, we make communication seamless and accessible.
           </p>
           <div className="flex justify-between md:w-[75%] my-6">
             <FaFacebookSquare size={30} />
@@ -165,44 +164,6 @@ export const Home = () => {
             <FaTwitterSquare size={30} />
             <FaGithubSquare size={30} />
             <FaDribbbleSquare size={30} />
-          </div>
-        </div>
-        <div className="lg:col-span-2 flex justify-between mt-6">
-          <div>
-            <h6 className="font-medium text-gray-400">Solutions</h6>
-            <ul>
-              <li className="py-2 text-sm">Analytics</li>
-              <li className="py-2 text-sm">Marketing</li>
-              <li className="py-2 text-sm">Commerce</li>
-              <li className="py-2 text-sm">Insights</li>
-            </ul>
-          </div>
-          <div>
-            <h6 className="font-medium text-gray-400">Support</h6>
-            <ul>
-              <li className="py-2 text-sm">Pricing</li>
-              <li className="py-2 text-sm">Documentation</li>
-              <li className="py-2 text-sm">Guides</li>
-              <li className="py-2 text-sm">API Status</li>
-            </ul>
-          </div>
-          <div>
-            <h6 className="font-medium text-gray-400">Company</h6>
-            <ul>
-              <li className="py-2 text-sm">About</li>
-              <li className="py-2 text-sm">Blog</li>
-              <li className="py-2 text-sm">Jobs</li>
-              <li className="py-2 text-sm">Press</li>
-              <li className="py-2 text-sm">Careers</li>
-            </ul>
-          </div>
-          <div>
-            <h6 className="font-medium text-gray-400">Legal</h6>
-            <ul>
-              <li className="py-2 text-sm">Claim</li>
-              <li className="py-2 text-sm">Policy</li>
-              <li className="py-2 text-sm">Terms</li>
-            </ul>
           </div>
         </div>
       </div>
