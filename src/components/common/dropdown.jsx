@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export function Dropdown({ languageState, setLanguageState }) {
   const changeLanguage = (e) => setLanguageState(e.target.value);
@@ -17,7 +17,7 @@ export function Dropdown({ languageState, setLanguageState }) {
 
   return (
     <select
-    defaultValue={languageState}
+      defaultValue={languageState}
       name="languages"
       id="languages"
       onChange={changeLanguage}
@@ -27,7 +27,8 @@ export function Dropdown({ languageState, setLanguageState }) {
         <option value={lang} key={lang} className="text-[black]">
           {lang}
         </option>
-      ))} </select>
+      ))}{" "}
+    </select>
   );
 }
 

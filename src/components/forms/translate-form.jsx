@@ -22,14 +22,7 @@ export const TranslateForm = () => {
         }, 400);
       }}
     >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleSubmit,
-        isSubmitting,
-      }) => (
+      {({ values, errors, touched, handleSubmit }) => (
         <form className="flex flex-col gap-2 w-full" onSubmit={handleSubmit}>
           <Field
             component={DoubleDropdown}

@@ -1,13 +1,14 @@
-import { Dropdown } from "./dropdown";
 import { MdSwapHoriz } from "react-icons/md";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-export function LanguageDropdown({
+import { Dropdown } from ".";
+
+export const LanguageDropdown = ({
   inputLanguageState,
   setInputLanguageState,
   outputLanguageState,
   setOutputLanguageState,
-}) {
+}) => {
   return (
     <div className="flex w-full items-center px-2 text-black gap-2 justify-between border rounded-lg h-10">
       <Dropdown
@@ -23,7 +24,7 @@ export function LanguageDropdown({
       />
     </div>
   );
-}
+};
 
 LanguageDropdown.propTypes = {
   inputLanguageState: PropTypes.object.isRequired,
