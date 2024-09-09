@@ -3,7 +3,6 @@ import { IoHome } from "react-icons/io5";
 import { MdOutlineTranslate } from "react-icons/md";
 import { IoIosCamera } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
-import { SiGoogletasks } from "react-icons/si";
 import { CiMicrophoneOn } from "react-icons/ci";
 
 import { useScreen } from "../../hooks";
@@ -76,19 +75,6 @@ export const Nav = () => {
             </section>
           )}
         </Link>
-        <Link
-          to="/project"
-          className="[&.active]:font-bold [&.active]:text-primary"
-        >
-          {({ isActive }) => (
-            <section className="flex justify-center items-center">
-              <SiGoogletasks
-                className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
-              />
-              Status
-            </section>
-          )}
-        </Link>
       </nav>
 
       {showBottomNav && (
@@ -152,19 +138,6 @@ export const Nav = () => {
                   className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
                 />
                 Transcribe
-              </section>
-            )}
-          </Link>
-          <Link
-            to="/project"
-            className="[&.active]:font-bold [&.active]:text-primary"
-          >
-            {({ isActive }) => (
-              <section className="flex flex-col justify-center items-center">
-                <SiGoogletasks
-                  className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
-                />
-                Tickets
               </section>
             )}
           </Link>
