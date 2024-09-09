@@ -35,7 +35,7 @@ export const Home = () => {
         <Button
           variant="gradient"
           onClick={goToTranslate}
-          className="w-1/3 lg:w-2/3"
+          className="w-2/3 py-4"
         >
           Get Started
         </Button>

@@ -1,8 +1,9 @@
 import { Dropdown } from "./dropdown";
 import { MdSwapHoriz } from "react-icons/md";
+import PropTypes from 'prop-types';
 
 export function LanguageDropdown({
-  inputlanguageState,
+  inputLanguageState,
   setInputLanguageState,
   outputLanguageState,
   setOutputLanguageState,
@@ -10,7 +11,7 @@ export function LanguageDropdown({
   return (
     <div className="flex w-full items-center px-2 text-black gap-2 justify-between border rounded-lg h-10">
       <Dropdown
-        languageState={inputlanguageState}
+        languageState={inputLanguageState}
         setLanguageState={setInputLanguageState}
       />
       <span>
@@ -23,3 +24,10 @@ export function LanguageDropdown({
     </div>
   );
 }
+
+LanguageDropdown.propTypes = {
+  inputLanguageState: PropTypes.object.isRequired,
+  setInputLanguageState: PropTypes.func.isRequired,
+  outputLanguageState: PropTypes.object.isRequired,
+  setOutputLanguageState: PropTypes.func.isRequired,
+};

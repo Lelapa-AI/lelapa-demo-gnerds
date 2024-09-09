@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { MdVolumeUp, MdEdit, MdContentCopy } from "react-icons/md";
-import { IoMdMic } from "react-icons/io";
+import { MdContentCopy } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
 import { FaWhatsapp } from "react-icons/fa";
@@ -29,7 +28,7 @@ const langToCode = {
 export const Translate = () => {
   const [enable, setEnable] = useState(false);
   const [inputTextState, setInputTextState] = useState("English");
-  const [outputTextState, setOutputTextState] = useState("English");
+  const [outputTextState, setOutputTextState] = useState("Zulu");
   const [textState, setTextState] = useState("");
   const { whatsAppUrl } = config;
 
@@ -84,13 +83,7 @@ export const Translate = () => {
       </div>
       <div className="rounded-lg p-2 text-[black] bg-light-white">
         <div className="flex items-center space-x-4">
-          <span>{inputTextState}</span>
-          <span>
-            <MdVolumeUp size={20} color="black" />
-          </span>
-          <span>
-            <MdEdit size={20} color="black" />
-          </span>
+          <p><span className="text-xs font-semibold italic">From: </span>{inputTextState}</p>
         </div>
         <textarea
           name="input-text"
@@ -101,9 +94,9 @@ export const Translate = () => {
           className="w-full rounded-none bg-light-white border-none focus:outline-none"
         />
         <br />
-        <section className="flex items-center justify-between px-2">
-          <IoMdMic className="bg-primary rounded-full p-2 text-[white] w-8 h-8" />
+        <section className="flex items-center justify-center px-2">
           <Button
+          className="w-1/2"
             onClick={onStartTranslate}
             disabled={isLoading}
             variant="gradient"
@@ -115,13 +108,8 @@ export const Translate = () => {
       </div>
 
       <div className="rounded-lg relative bg-light-white text-[black] flex flex-col h-36 px-2">
-        <div className="flex items-center justify-between">
-          <section className="bg-light-white">{outputTextState}</section>
-          <MdVolumeUp color="black" />
-        </div>
-
+          <p><span className="text-xs font-semibold">To: </span>{outputTextState}</p>
         {isLoading ? <BeatLoader /> : <p>{data?.translation}</p>}
-
         <section className="absolute flex right-0 bottom-2 items-center gap-2 px-2">
           <Button onClick={copyToClipboard} variant="text">
             <MdContentCopy className="text-[black] w-5 h-5 hover:text-primary" />
