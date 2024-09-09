@@ -9,21 +9,10 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { config } from "../../../config";
 import { LanguageDropdown } from "../forms/language-dropdown";
-import { Button, SubHeading, P, PageLayout } from "../../components";
+import { Button, P, PageLayout } from "../../components";
 import { TranslateService, translationModel } from "../../services";
+import { LANG_CODES } from "../../constants";
 
-const langToCode = {
-  "Northern Sotho": "nso_Latn",
-  Afrikaans: "afr_Latn",
-  "Southern Sotho": "sot_Latn",
-  Swati: "ssw_Latn",
-  Tsonga: "tso_Latn",
-  Tswana: "tsn_Latn",
-  Xhosa: "xho_Latn",
-  Zulu: "zul_Latn",
-  English: "eng_Latn",
-  Swahili: "swh_Latn",
-};
 
 export const Translate = () => {
   const [enable, setEnable] = useState(false);
@@ -37,8 +26,8 @@ export const Translate = () => {
     queryFn: () =>
       TranslateService.translate(
         textState,
-        langToCode[inputTextState],
-        langToCode[outputTextState]
+        LANG_CODES[inputTextState],
+        LANG_CODES[outputTextState]
       ),
     enabled: enable,
     select: translationModel,
@@ -50,7 +39,7 @@ export const Translate = () => {
   };
 
   const copyToClipboard = () => {
-    if (data?.translation) {
+    if (isEmpty(data?.translation)) {
       copy(data?.translation);
       toast.success("Text copied to clipboard!");
     } else {
@@ -68,8 +57,7 @@ export const Translate = () => {
   };
 
   return (
-    <PageLayout hasBack>
-      <SubHeading title="Translate" />
+    <PageLayout hasBack title="Translate">
       <P className="text-xs text-center">
         Now you can translate to South African Languages
       </P>
@@ -115,7 +103,6 @@ export const Translate = () => {
             <MdContentCopy className="text-[black] w-5 h-5 hover:text-primary" />
           </Button>
           <Button
-            disabled={isEmpty(data?.translation)}
             variant="text"
             onClick={shareTextToWhatsApp}
           >
@@ -123,7 +110,6 @@ export const Translate = () => {
           </Button>
         </section>
       </div>
-
       <Toaster />
     </PageLayout>
   );

@@ -1,10 +1,9 @@
-import { CameraCapture, SubHeading } from "../common";
+import { CameraCapture } from "../common";
 import { PageLayout } from "../templates";
 
 export const Language = () => {
   return (
-    <PageLayout hasBack>
-      <SubHeading title="Language" />
+    <PageLayout hasBack title="Language">
       <CameraCapture />
     </PageLayout>
   );
