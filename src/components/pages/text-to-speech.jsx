@@ -114,7 +114,7 @@ export const TextToSpeech = () => {
     setIsLoading(true); // Start loading
 
     const url = 'https://vulavula-services.lelapa.ai/api/v1/translate/process';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlMDMwYjY3MGVhOTRhMGE5NGFhYTNhY2EwZDBlNjY1IiwiY2xpZW50X2lkIjoyMSwicmVxdWVzdHNfcGVyX21pbnV0ZSI6MCwibGFzdF9yZXF1ZXN0X3RpbWUiOm51bGx9.o2zYkTIOPMtcSJti0lgCT3d-nr5PWypbZuAmDCWzIBU'; // Replace with your token
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlMDMwYjY3MGVhOTRhMGE5NGFhYTNhY2EwZDBlNjY1IiwiY2xpZW50X2lkIjoyMSwicmVxdWVzdHNfcGVyX21pbnV0ZSI6MCwibGFzdF9yZXF1ZXN0X3RpbWUiOm51bGx9.o2zYkTIOPMtcSJti0lgCT3d-nr5PWypbZuAmDCWzIBU';
 
     const headers = {
       'Content-Type': 'application/json',
