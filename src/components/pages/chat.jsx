@@ -8,7 +8,7 @@ import { TranslateService, translationModel } from "../../services";
 import { PageLayout } from "../templates";
 import { VoiceRecorder, ChatBubble } from "../common";
 
-export const Converse = () => {
+export const Chat = () => {
   const [enable, setEnable] = useState(false);
   const [inputLanguage] = useState("English");
   const [outputLanguage /* setOutputLanguage */] = useState("Zulu");
@@ -47,7 +47,7 @@ export const Converse = () => {
           )}
         </section>
         <section className="flex items-center justify-start">
-          {isLoading && <BeatLoader />}
+          {isLoading && <BeatLoader color="#F19A1A" />}
           {enable && !isLoading && (
             <ChatBubble
               mode="to"

@@ -50,7 +50,7 @@ export const Nav = () => {
           )}
         </Link>
         <Link
-          to="/converse"
+          to="/chat"
           className="[&.active]:font-bold [&.active]:text-primary"
         >
           {({ isActive }) => (
@@ -58,7 +58,7 @@ export const Nav = () => {
               <IoPeople
                 className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
               />
-              Converse
+              Chat
             </section>
           )}
         </Link>
@@ -116,7 +116,7 @@ export const Nav = () => {
             )}
           </Link>
           <Link
-            to="/converse"
+            to="/chat"
             className="[&.active]:font-bold [&.active]:text-primary"
           >
             {({ isActive }) => (
@@ -124,7 +124,7 @@ export const Nav = () => {
                 <IoPeople
                   className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
                 />
-                Converse
+                Chat
               </section>
             )}
           </Link>

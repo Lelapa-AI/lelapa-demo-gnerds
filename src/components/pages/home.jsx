@@ -56,13 +56,13 @@ export const Home = () => {
               Start Talking and Let Us Do the Typing.
             </h1>
             <p>
-              Say it in your language, and we'll translate it. Our service makes
-              translation easier than ever—just speak, and we’ll take care of
-              the rest.
+              Say it in your language, and we&apos;ll translate it. Our service
+              makes translation easier than ever—just speak, and we’ll take care
+              of the rest.
               <br />
               <br />
-              Whether you're working on international projects, connecting with
-              people across borders, or simply need help with accurate
+              Whether you&rsquo;re working on international projects, connecting
+              with people across borders, or simply need help with accurate
               translations, we’re here to simplify the process. Fast, reliable,
               and effortless, our voice-to-text translation tool breaks down
               language barriers with ease.
@@ -155,8 +155,8 @@ export const Home = () => {
           <p className="py-4">
             Say goodbye to language barriers. With Vula-Ringa, speak naturally
             in your language and let us provide real-time translations. Whether
-            you're connecting with friends, clients, or colleagues across the
-            globe, we make communication seamless and accessible.
+            you&rsquo;re connecting with friends, clients, or colleagues across
+            the globe, we make communication seamless and accessible.
           </p>
           <div className="flex justify-between md:w-[75%] my-6">
             <FaFacebookSquare size={30} />
