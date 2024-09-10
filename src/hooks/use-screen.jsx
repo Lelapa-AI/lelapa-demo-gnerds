@@ -4,7 +4,8 @@ import { useLocation } from "@tanstack/react-router";
 import { FULLSCREEN_ROUTES } from "../constants";
 
 export const useScreen = () => {
-  const [isFullScreen, setFullScreen] = useState();
+  const [isFullScreen, setFullScreen] = useState(false);
+  const [isWeb, setIsWeb] = useState(true);
   const [showBottomNav, setShowBottomNav] = useState(true);
   const location = useLocation();
 
@@ -20,7 +21,13 @@ export const useScreen = () => {
       setFullScreen(false);
       setShowBottomNav(true);
     }
+
+    if (window.innerWidth > 768) {
+      setIsWeb(true);
+    } else {
+      setIsWeb(false);
+    }
   }, [location?.pathname]);
 
-  return { isFullScreen, toggleFullScreen, showBottomNav };
+  return { isFullScreen, isWeb, toggleFullScreen, showBottomNav };
 };
