@@ -99,7 +99,7 @@ const synthesizeSpeech = async (translatedText, selectedSpeechLang, setAudioUrl)
   }
 };
 
-export const Translate = () => {
+export const TextToSpeech = () => {
   const [inputTextState, setInputTextState] = useState("English"),
     [outputTextState, setOutputTextState] = useState("English");
 
