@@ -6,6 +6,7 @@ import { SpeechService } from "../../services";
 import { CHAT_MODES } from "../../constants";
 import { Button } from "./button";
 import { FaShare, FaVolumeHigh } from "react-icons/fa6";
+import axios from "axios";
 
 export const ChatBubble = ({ mode, text, lang }) => {
 	const shareToApps = () => {
@@ -19,18 +20,30 @@ export const ChatBubble = ({ mode, text, lang }) => {
 
 	const playAudio = () => {};
 
-	const { data } = useQuery({
+	/* const { data } = useQuery({
 		queryKey: ["synthesize"],
 		queryFn: () => SpeechService.synthesize(text, "zul-ZA-hmm-lindiwe"),
 		enabled: mode === CHAT_MODES.TO,
-	});
+	}); */
 
 	const { data: voices } = useQuery({
 		queryKey: ["voices"],
 		queryFn: () => SpeechService.getVoices(),
 	});
 
-	console.log("Voice call", voices, "data", data);
+	try {
+		axios.get("https://api.qfrency.com/v1/synthesize", {
+			params: {
+				"voice-code": "zul-ZA-hmm-lindiwe",
+				text: text,
+			},
+			headers: { X_API_KEY: "263a08cc-4a1e-4f3c-aef9-69b1223fe668" },
+		});
+	} catch (error) {
+		console.error("Error", error);
+	}
+
+	console.log("Synth call", "synthesizeData", "voices", voices);
 
 	return mode === CHAT_MODES.FROM ? (
 		<section className="flex flex-col w-2/3">

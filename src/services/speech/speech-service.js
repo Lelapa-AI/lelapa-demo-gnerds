@@ -16,7 +16,17 @@ const getVoices = () => {
 	return csirAuthRequest.get(`${VOICES_URL}`);
 };
 
+const synthesizeViaParams = (text, lang) => {
+	return csirAuthRequest.get(`${SYNTHESIZE_URL}`, {
+		params: {
+			"voice-code": lang,
+			text,
+		},
+	});
+};
+
 export default {
 	synthesize,
 	getVoices,
+	synthesizeViaParams,
 };

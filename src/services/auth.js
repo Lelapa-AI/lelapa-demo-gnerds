@@ -15,5 +15,7 @@ export const vulaAuthRequest = axios.create({
 export const csirAuthRequest = axios.create({
 	headers: {
 		"X-API-KEY": qfrencyApiKey,
+		"Access-Control-Allow-Origin": "*",
+		"Content-Type": "application/json",
 	},
 });
