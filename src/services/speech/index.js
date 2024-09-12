@@ -1,0 +1,1 @@
+export { default as SpeechService } from './speech-service'
