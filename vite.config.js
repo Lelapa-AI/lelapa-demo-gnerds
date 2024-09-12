@@ -54,12 +54,12 @@ export default defineConfig({
 	},
 	server: {
 		port: 3000,
-		proxy: {
+		/* proxy: {
 			"/api": {
 				target: "https://tts.qfrency.com",
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api/, ""),
 			},
-		},
+		}, */
 	},
 });
