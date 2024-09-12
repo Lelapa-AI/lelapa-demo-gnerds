@@ -19,13 +19,18 @@ export const ChatBubble = ({ mode, text, lang }) => {
 
 	const playAudio = () => {};
 
-	const { data, isLoading } = useQuery({
+	const { data } = useQuery({
 		queryKey: ["synthesize"],
 		queryFn: () => SpeechService.synthesize(text, "zul-ZA-hmm-lindiwe"),
 		enabled: mode === CHAT_MODES.TO,
 	});
 
-	console.log(data, isLoading);
+	const { data: voices } = useQuery({
+		queryKey: ["voices"],
+		queryFn: () => SpeechService.getVoices(),
+	});
+
+	console.log("Voice call", voices, "data", data);
 
 	return mode === CHAT_MODES.FROM ? (
 		<section className="flex flex-col w-2/3">
