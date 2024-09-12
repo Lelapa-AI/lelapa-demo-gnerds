@@ -27,8 +27,8 @@ export const LanguageDropdown = ({
 };
 
 LanguageDropdown.propTypes = {
-  inputLanguageState: PropTypes.object.isRequired,
+  inputLanguageState: PropTypes.string.isRequired,
   setInputLanguageState: PropTypes.func.isRequired,
-  outputLanguageState: PropTypes.object.isRequired,
+  outputLanguageState: PropTypes.string.isRequired,
   setOutputLanguageState: PropTypes.func.isRequired,
 };
