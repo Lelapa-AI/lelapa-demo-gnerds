@@ -17,6 +17,6 @@ export const csirAuthRequest = axios.create({
 		"X-API-KEY": qfrencyApiKey,
 		" X-ACCOUNT-KEY": qfrencyAccountKey,
 		"Content-Type": "application/json",
-		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Origin": "http://localhost:5173",
 	},
 });
