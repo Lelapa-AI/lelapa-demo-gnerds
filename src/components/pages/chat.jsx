@@ -22,7 +22,7 @@ export const Chat = () => {
 		setSent(true);
 		setEnable(true);
 		setMessages([inputText]);
-		setInputText("");
+		//setInputText("");
 		refetch();
 	};
 
@@ -30,11 +30,11 @@ export const Chat = () => {
 		queryKey: ["translate"],
 		queryFn: () =>
 			TranslateService.translate(
-				messages[0],
+				inputText,
 				LANG_CODES[inputLanguage],
 				LANG_CODES[outputLanguage],
 			),
-		enabled: enable && sent && messages.length > 0,
+		enabled: enable && sent && inputText.length > 0,
 		select: translationModel,
 	});
 
@@ -48,13 +48,13 @@ export const Chat = () => {
 				</section>
 				<section className="flex items-center justify-start">
 					{isLoading && <BeatLoader color="#F19A1A" />}
-					{enable && !isLoading && (
+					{
 						<ChatBubble
 							mode="to"
 							text={data?.translation}
 							lang={outputLanguage}
 						/>
-					)}
+					}
 				</section>
 			</section>
 

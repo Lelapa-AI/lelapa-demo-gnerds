@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { useQuery } from "@tanstack/react-query";
 
-import { SpeechService } from "../../services";
+import { audioModel, SpeechService } from "../../services";
 import { CHAT_MODES } from "../../constants";
 import { Button } from "./button";
 import { FaShare, FaVolumeHigh } from "react-icons/fa6";
@@ -23,6 +23,7 @@ export const ChatBubble = ({ mode, text, lang }) => {
 		queryKey: ["synthesize"],
 		queryFn: () => SpeechService.synthesize(text, "zul-ZA-hmm-lindiwe"),
 		enabled: mode === CHAT_MODES.TO,
+		select: audioModel,
 	});
 
 	console.log("Synthesize", data);
