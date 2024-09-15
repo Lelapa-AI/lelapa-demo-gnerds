@@ -13,3 +13,4 @@ export * from "./slider-card";
 export * from "./slider";
 export * from "./sub-heading";
 export * from "./voice-recorder";
+export * from "./selector";

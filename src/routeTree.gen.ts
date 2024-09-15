@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TranscribeImport } from './routes/transcribe'
+import { Route as ProfileImport } from './routes/profile'
 import { Route as ChatImport } from './routes/chat'
 
 // Create Virtual Routes
@@ -45,6 +46,11 @@ const TranscribeRoute = TranscribeImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ProfileRoute = ProfileImport.update({
+  path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ChatRoute = ChatImport.update({
   path: '/chat',
   getParentRoute: () => rootRoute,
@@ -71,6 +77,13 @@ declare module '@tanstack/react-router' {
       path: '/chat'
       fullPath: '/chat'
       preLoaderRoute: typeof ChatImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileImport
       parentRoute: typeof rootRoute
     }
     '/transcribe': {
@@ -109,6 +122,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   ChatRoute,
+  ProfileRoute,
   TranscribeRoute,
   LanguageLazyRoute,
   ProjectLazyRoute,
@@ -125,6 +139,7 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/chat",
+        "/profile",
         "/transcribe",
         "/language",
         "/project",
@@ -136,6 +151,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/chat": {
       "filePath": "chat.jsx"
+    },
+    "/profile": {
+      "filePath": "profile.jsx"
     },
     "/transcribe": {
       "filePath": "transcribe.jsx"
