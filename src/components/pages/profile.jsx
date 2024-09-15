@@ -1,40 +1,48 @@
-import { useEffect } from "react";
-import { createSwapy } from "swapy";
+import { useState } from "react";
+import { CiEdit } from "react-icons/ci";
 
+import { Button, Selector } from "../common";
 import { PageLayout } from "../templates";
+import { useSettingsStore } from "../../store";
 
 export const Profile = () => {
-  useEffect(() => {
-    const container = document.querySelector(".container");
-    const swapy = createSwapy(container);
-    swapy.enable(true);
-  }, []);
+  const [edit, setEdit] = useState(false);
+  const { defaultLanguage, outputLanguage } = useSettingsStore();
+
+  const handleSave = () => {
+    setEdit(false);
+  };
 
   return (
     <PageLayout hasBack title="Profile">
-      <div className="container grid grid-flow-row">
-        <div
-          className="section-1 bg-tertiary text-3xl font-bold flex justify-center rounded-lg py-4 w-1/2"
-          data-swapy-slot="foo"
+      <section className="flex justify-end">
+        <Button
+          onClick={() => setEdit(true)}
+          className="flex items-center gap-1"
+          variant="text"
         >
-          <div className="content-a" data-swapy-item="a">
-            <p>Foo</p>
-          </div>
-        </div>
+          <CiEdit /> Edit
+        </Button>
+      </section>
 
-        <div className="section-2" data-swapy-slot="bar">
-          <div className="content-b" data-swapy-item="b">
-            <p>Bar</p>
-            <div className="handle" data-swapy-handle></div>
-          </div>
-        </div>
-
-        <div className="section-3" data-swapy-slot="baz">
-          <div className="content-c" data-swapy-item="c">
-            <p>Baz</p>
-          </div>
-        </div>
-      </div>
+      {edit ? (
+        <section className="flex flex-col gap-2">
+          <Selector onFinish={handleSave} />
+        </section>
+      ) : (
+        <section className="grid grid-flow-row gap-4 mt-[10%]">
+          <section className="flex items-center justify-center flex-col rounded-xl p-4 bg-tertiary">
+            <h2 className="text-xs font-bold text-[black]">
+              Preferred Language
+            </h2>
+            <p className="text-4xl">{defaultLanguage}</p>
+          </section>
+          <section className="flex items-center justify-center flex-col rounded-xl p-4 bg-secondary">
+            <h2 className="text-xs font-bold text-[black]">Output Language</h2>
+            <p className="text-4xl">{outputLanguage}</p>
+          </section>
+        </section>
+      )}
     </PageLayout>
   );
 };
