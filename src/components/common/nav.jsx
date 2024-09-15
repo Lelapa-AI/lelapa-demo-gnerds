@@ -3,7 +3,7 @@ import { IoHome } from "react-icons/io5";
 import { MdOutlineTranslate } from "react-icons/md";
 import { IoIosCamera } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
-import { CiMicrophoneOn } from "react-icons/ci";
+import { CiMicrophoneOn, CiUser } from "react-icons/ci";
 
 import { useScreen } from "../../hooks";
 
@@ -138,6 +138,19 @@ export const Nav = () => {
                   className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
                 />
                 Transcribe
+              </section>
+            )}
+          </Link>
+          <Link
+            to="/profile"
+            className="[&.active]:font-bold [&.active]:text-primary"
+          >
+            {({ isActive }) => (
+              <section className="flex flex-col justify-center items-center">
+                <CiUser
+                  className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+                />
+                Profile
               </section>
             )}
           </Link>
