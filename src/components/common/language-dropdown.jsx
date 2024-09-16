@@ -1,7 +1,7 @@
 import { MdSwapHoriz } from "react-icons/md";
 import PropTypes from "prop-types";
 
-import { Dropdown } from ".";
+import { Button, Dropdown } from ".";
 
 export const LanguageDropdown = ({
   inputLanguageState,
@@ -16,7 +16,16 @@ export const LanguageDropdown = ({
         setLanguageState={setInputLanguageState}
       />
       <span>
-        <MdSwapHoriz size={24} color="#ffffff" />
+        <Button
+          variant="text"
+          onClick={() => {
+            const temp = inputLanguageState;
+            setInputLanguageState(outputLanguageState);
+            setOutputLanguageState(temp);
+          }}
+        >
+          <MdSwapHoriz size={24} color="#ffffff" />
+        </Button>
       </span>
       <Dropdown
         languageState={outputLanguageState}

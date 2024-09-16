@@ -19,6 +19,7 @@ export const Home = () => {
   const goToTranslate = () => navigate({ to: "/translate" });
   const goToTranscribe = () => navigate({ to: "/transcribe" });
   const goToConverse = () => navigate({ to: "/converse" });
+  const goToSettings = () => navigate({ to: "/profile" });
 
   return (
     <div className="bg-background">
@@ -42,7 +43,7 @@ export const Home = () => {
         <Button
           className="w-[200px] font-medium"
           variant="gradient"
-          onClick={goToTranslate}
+          onClick={goToSettings}
         >
           Get Started
         </Button>

@@ -31,5 +31,5 @@ PageLayout.propTypes = {
   children: PropTypes.node.isRequired,
   hasBack: PropTypes.bool,
   title: PropTypes.string,
-  rightHeader: PropTypes.string,
+  rightHeader: PropTypes.string || PropTypes.node,
 };

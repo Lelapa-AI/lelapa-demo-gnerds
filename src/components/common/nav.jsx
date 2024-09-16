@@ -75,6 +75,19 @@ export const Nav = () => {
             </section>
           )}
         </Link>
+        <Link
+            to="/profile"
+            className="[&.active]:font-bold [&.active]:text-primary"
+          >
+            {({ isActive }) => (
+              <section className="flex justify-center items-center">
+                <CiUser
+                  className={`w-6 h-6 ${isActive ? "text-primary" : "text-grey"}`}
+                />
+                Profile
+              </section>
+            )}
+          </Link>
       </nav>
 
       {showBottomNav && (

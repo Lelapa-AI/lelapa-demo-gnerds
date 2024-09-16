@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Profiler, useState } from "react";
 import { IoSend } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
@@ -39,7 +39,13 @@ export const Chat = () => {
   });
 
   return (
-    <PageLayout hasBack title="Converse" rightHeader={outputLanguage}>
+    <PageLayout hasBack rightHeader={
+      <>/;
+        .»
+
+        = 
+      </>
+    }>
       <section className="absolute bottom-[15%] left-0 right-0 flex-col gap-2 px-2">
         <section className="flex items-center justify-end">
           {sent && (
