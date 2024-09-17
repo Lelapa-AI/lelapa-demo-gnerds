@@ -9,13 +9,13 @@ export const vulaAuthRequest = axios.create({
 		"X-CLIENT-TOKEN": apiKey,
 		"X-CLIENT-ID": lelapaId,
 		"Content-Type": "application/json",
+		"Access-Control-Allow-Origin": "*",
 	},
 });
 
 export const csirAuthRequest = axios.create({
 	headers: {
-		"X-API-KEY": qfrencyApiKey,
-		"Access-Control-Allow-Origin": "*",
+		"X-Api-Key": qfrencyApiKey,
 		"Content-Type": "application/json",
 	},
 });
