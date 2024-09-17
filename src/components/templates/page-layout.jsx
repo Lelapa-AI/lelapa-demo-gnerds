@@ -12,14 +12,12 @@ export const PageLayout = ({
   return (
     <section className="flex flex-col gap-3 px-4 py-1">
       {!isWeb && (
-        <section className="flex items-center gap-4">
+        <section className="flex items-center justify-between">
           {hasBack && <Back />}
-          <section className="flex flex-col justify-center w-2/3">
+          <section className="flex flex-col justify-center items-center ">
             {title && <SubHeading title={title} />}
-            {rightHeader && (
-              <p className="text-xs text-center text-grey">In {rightHeader}</p>
-            )}
           </section>
+            {rightHeader?rightHeader:<div className="w-8"/>}
         </section>
       )}
       {children}

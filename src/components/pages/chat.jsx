@@ -39,7 +39,17 @@ export const Chat = () => {
 	});
 
 	return (
-		<PageLayout hasBack rightHeader={<>Test</>}>
+		<PageLayout
+			hasBack
+			title={outputLanguage}
+			rightHeader={
+				<img
+					src={`https://eu.ui-avatars.com/api/?name=${outputLanguage}&background=1E2D40&color=fff`}
+					alt="profile"
+					className="w-8 h-8 rounded-full"
+				/>
+			}
+		>
 			<section className="absolute bottom-[15%] left-0 right-0 flex-col gap-2 px-2">
 				<section className="flex items-center justify-end">
 					{sent && (
