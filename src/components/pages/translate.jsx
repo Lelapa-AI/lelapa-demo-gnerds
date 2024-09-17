@@ -59,14 +59,14 @@ export const Translate = () => {
       <P className="text-xs text-center">
         Now you can translate to South African Languages
       </P>
-      <div>
-        <LanguageDropdown
-          inputLanguageState={inputTextState}
-          setInputLanguageState={setInputTextState}
-          outputLanguageState={outputTextState}
-          setOutputLanguageState={setOutputTextState}
-        />
-      </div>
+
+      <LanguageDropdown
+        inputLanguageState={inputTextState}
+        setInputLanguageState={setInputTextState}
+        outputLanguageState={outputTextState}
+        setOutputLanguageState={setOutputTextState}
+      />
+
       <div className="rounded-lg p-2 text-[black] bg-light-white">
         <div className="flex items-center space-x-4">
           <p>
