@@ -1,20 +1,23 @@
-import { Profiler, useState } from "react";
+import {  useState } from "react";
 import { IoSend } from "react-icons/io5";
-import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
+import { useQuery } from "@tanstack/react-query";
 
-import { LANG_CODES } from "../../constants";
 import { TranslateService, translationModel } from "../../services";
+import { VoiceRecorder, ChatBubble, Avatar } from "../common";
+import { useSettingsStore } from "../../store";
+import { LANG_CODES } from "../../constants";
 import { PageLayout } from "../templates";
-import { VoiceRecorder, ChatBubble } from "../common";
+import { useScreen } from "../../hooks";
 
 export const Chat = () => {
+	const {defaultLanguage, outputLanguage} = useSettingsStore();
 	const [enable, setEnable] = useState(false);
-	const [inputLanguage] = useState("English");
-	const [outputLanguage /* setOutputLanguage */] = useState("Zulu");
+	const [inputLanguage] = useState(defaultLanguage);
 	const [inputText, setInputText] = useState("");
 	const [sent, setSent] = useState(false);
 	const [messages, setMessages] = useState([]);
+	const {isWeb} = useScreen()
 
 	const handleInputChange = (e) => setInputText(e.target.value);
 
@@ -43,13 +46,15 @@ export const Chat = () => {
 			hasBack
 			title={outputLanguage}
 			rightHeader={
-				<img
-					src={`https://eu.ui-avatars.com/api/?name=${outputLanguage}&background=1E2D40&color=fff`}
-					alt="profile"
-					className="w-8 h-8 rounded-full"
-				/>
+				<Avatar name={outputLanguage}/>
 			}
 		>
+		{isWeb && <header className="flex justify-center items-center flex-col">
+			<section className="flex gap-1">
+				Chatting with <p className="text-primary">{outputLanguage}</p>
+			</section>
+			<Avatar name={outputLanguage}/>
+		</header>}
 			<section className="absolute bottom-[15%] left-0 right-0 flex-col gap-2 px-2">
 				<section className="flex items-center justify-end">
 					{sent && (

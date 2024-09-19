@@ -11,11 +11,13 @@ import { config } from "../../../config";
 import { Button, P, PageLayout, LanguageDropdown } from "../../components";
 import { TranslateService, translationModel } from "../../services";
 import { LANG_CODES } from "../../constants";
+import { useSettingsStore } from "../../store";
 
 export const Translate = () => {
+  const {defaultLanguage, outputLanguage} = useSettingsStore();
   const [enable, setEnable] = useState(false);
-  const [inputTextState, setInputTextState] = useState("English");
-  const [outputTextState, setOutputTextState] = useState("Zulu");
+  const [inputTextState, setInputTextState] = useState(defaultLanguage);
+  const [outputTextState, setOutputTextState] = useState(outputLanguage);
   const [textState, setTextState] = useState("");
   const { whatsAppURL } = config;
 

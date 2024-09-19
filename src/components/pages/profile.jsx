@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 
-import { Button, Selector } from "../common";
+import { Button } from "../common";
 import { PageLayout } from "../templates";
 import { useSettingsStore } from "../../store";
+import { ProfileForm } from "../forms/profile-form";
 
 export const Profile = () => {
   const [edit, setEdit] = useState(false);
@@ -26,9 +27,7 @@ export const Profile = () => {
       </section>
 
       {edit ? (
-        <section className="flex flex-col gap-2">
-          <Selector onFinish={handleSave} />
-        </section>
+        <ProfileForm onSave={handleSave}/>
       ) : (
         <section className="grid grid-flow-row gap-4 mt-[10%]">
           <section className="flex items-center justify-center flex-col rounded-xl p-4 bg-tertiary">

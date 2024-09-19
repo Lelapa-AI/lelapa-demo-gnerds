@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { useQuery } from "@tanstack/react-query";
+import {useSound} from 'use-sound';
 
 import { audioModel, SpeechService } from "../../services";
 import { CHAT_MODES } from "../../constants";
@@ -8,6 +9,8 @@ import { Button } from "./button";
 import { FaShare, FaVolumeHigh } from "react-icons/fa6";
 
 export const ChatBubble = ({ mode, text, lang }) => {
+	
+
 	const shareToApps = () => {
 		if (navigator.share) {
 			navigator.share({
@@ -17,7 +20,6 @@ export const ChatBubble = ({ mode, text, lang }) => {
 		}
 	};
 
-	const playAudio = () => {};
 
 	const { data } = useQuery({
 		queryKey: ["synthesize"],
@@ -25,6 +27,11 @@ export const ChatBubble = ({ mode, text, lang }) => {
 		enabled: mode === CHAT_MODES.TO,
 		select: audioModel,
 	});
+
+	const [play] = useSound(
+		//convert base64 wav to mp3 file or .wav file
+		
+	);
 
 	console.log("Synthesize", data);
 
@@ -49,7 +56,7 @@ export const ChatBubble = ({ mode, text, lang }) => {
 						</Button>
 					</section>
 				</section>
-				<Button onClick={playAudio} className="" variant="text">
+				<Button onClick={play} className="" variant="text">
 					<FaVolumeHigh className="w-5 h-5" />
 				</Button>
 			</section>

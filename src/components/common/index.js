@@ -1,3 +1,4 @@
+export * from './avatar'
 export * from "./back";
 export * from "./button";
 export * from "./camera";

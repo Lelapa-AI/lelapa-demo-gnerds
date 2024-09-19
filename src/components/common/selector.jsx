@@ -11,19 +11,21 @@ import clsx from "clsx";
 import { useState } from "react";
 import keys from "lodash/keys";
 import map from "lodash/map";
+import find from 'lodash/find'
 import PropTypes from "prop-types";
 
 import { LANG_CODES } from "../../constants";
 import { useSettingsStore } from "../../store";
 
-export const Selector = ({ onFinish }) => {
+export const Selector = ({ mode='in' }) => {
   const [query, setQuery] = useState("");
   const LANGUAGES = map(keys(LANG_CODES), (language, index) => ({
     id: index,
     name: language,
   }));
-  const [selected, setSelected] = useState(LANGUAGES[1]);
-  const { setDefaultLanguage } = useSettingsStore();
+  const { setDefaultLanguage , setOutputLanguage,defaultLanguage, outputLanguage} = useSettingsStore();
+  const initialLanguage =mode === 'in'?defaultLanguage:outputLanguage;
+  const [selected, setSelected] = useState(find(LANGUAGES,['name', initialLanguage])??LANGUAGES[0]);
 
   const filteredLanguages =
     query === ""
@@ -34,17 +36,17 @@ export const Selector = ({ onFinish }) => {
 
   const handleSelect = (language) => {
     setSelected(language);
-    setDefaultLanguage(language.name);
-    setTimeout(onFinish, 1500);
+    mode === 'in'?
+    setDefaultLanguage(language.name):
+    setOutputLanguage(language.name);
   };
 
   return (
-    <div className="mt-[10%]">
+    <div>
       <Combobox
         value={selected}
         onChange={handleSelect}
         onClose={() => setQuery("")}
-        __demoMode
       >
         <div className="relative">
           <ComboboxInput
@@ -85,5 +87,5 @@ export const Selector = ({ onFinish }) => {
 };
 
 Selector.propTypes = {
-  onFinish: PropTypes.func.isRequired,
+  mode: PropTypes.oneOf(['in','out'])
 };
