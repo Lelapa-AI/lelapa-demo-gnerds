@@ -1,30 +1,14 @@
-import { useState, useMemo } from "react";
 import { AudioRecorder } from "react-audio-voice-recorder";
-import { useQuery } from "@tanstack/react-query";
+import PropTypes from "prop-types";
 
-import { TranscribeService } from "../../services";
 import { useAudioConverter } from "../../hooks";
 
-export const VoiceRecorder = () => {
+export const VoiceRecorder = ({
+	setBase64String,
+	setFileName,
+	setFileSize,
+}) => {
 	const { convertToWav } = useAudioConverter();
-	const [transcribing, setTranscribing] = useState(false);
-	const [base64String, setBase64String] = useState(null);
-
-	const file = useMemo(
-		() => new File([base64String], "audio.wav", { type: "audio/wav" }),
-		[base64String],
-	);
-	const { data } = useQuery({
-		queryKey: ["transcribe"],
-		queryFn: () =>
-			TranscribeService.transcribeAsync(file?.name, base64String, file.size),
-		enabled: transcribing && !!file?.name && !!base64String && !!file.size,
-		onSuccess: () => {
-			setTranscribing(false);
-		},
-	});
-
-	console.log("My Output:", data);
 
 	return (
 		<div className="flex justify-center flex-col gap-4 items-center">
@@ -42,8 +26,12 @@ export const VoiceRecorder = () => {
 					reader.onloadend = () => {
 						const _base64String = reader.result;
 						setBase64String(_base64String.split(",")[1]);
+						const file = new File([_base64String], "audio.wav", {
+							type: "audio/wav",
+						});
+						setFileName(file.name);
+						setFileSize(file.size);
 					};
-					setTranscribing(true);
 				}}
 				downloadFileExtension="wav"
 			/>
@@ -51,4 +39,8 @@ export const VoiceRecorder = () => {
 	);
 };
 
-VoiceRecorder.propTypes = {};
+VoiceRecorder.propTypes = {
+	setBase64String: PropTypes.func.isRequired,
+	setFileName: PropTypes.func.isRequired,
+	setFileSize: PropTypes.func.isRequired,
+};

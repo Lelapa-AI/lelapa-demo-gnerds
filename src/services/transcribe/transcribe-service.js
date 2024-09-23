@@ -23,7 +23,6 @@ const process = (webHookUrl, langToCode) => {
 };
 
 const transcribeAsync = (file, encodedString, fileSize) => {
-	console.log("file", file);
 	const dto = uploadDto({ file, encodedString, fileSize });
 	return vulaAuthRequest.post(TRANSCRIBE_SYNC_URL, dto);
 };
