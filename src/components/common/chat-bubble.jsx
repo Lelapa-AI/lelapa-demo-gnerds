@@ -1,12 +1,13 @@
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
-import { useQuery } from "@tanstack/react-query";
 import { useSound } from "use-sound";
+import { useQuery } from "@tanstack/react-query";
+import { FaRegShareFromSquare, FaShare, FaVolumeHigh } from "react-icons/fa6";
 
 import { audioModel, SpeechService } from "../../services";
-import { CHAT_MODES } from "../../constants";
+import { CHAT_MODES, VOICE_CODES } from "../../constants";
 import { Button } from "./button";
-import { FaShare, FaVolumeHigh } from "react-icons/fa6";
+import { useMemo } from "react";
 
 export const ChatBubble = ({ mode, text, lang }) => {
 	const shareToApps = () => {
@@ -20,14 +21,29 @@ export const ChatBubble = ({ mode, text, lang }) => {
 
 	const { data } = useQuery({
 		queryKey: ["synthesize"],
-		queryFn: () => SpeechService.synthesize(text, "zul-ZA-hmm-lindiwe"),
+		queryFn: () => SpeechService.synthesize(text, VOICE_CODES[lang]),
 		enabled: mode === CHAT_MODES.TO,
 		select: audioModel,
 	});
 
-	const [play] = useSound(`data:audio/wav;base64,${data?.audioWav}`, {
-		volume: 10,
+	const audio = useMemo(
+		() => `data:audio/wav;base64,${data?.audioWav}`,
+		[data?.audioWav],
+	);
+
+	const [play, { duration }] = useSound(audio, {
+		volume: 0.5,
+		playbackRate: 1,
 	});
+
+	const shareAudio = () => {
+		if (navigator.share) {
+			navigator.share({
+				title: "Translate",
+				files: [new File([data?.audioWav], "audio.wav")],
+			});
+		}
+	};
 
 	return mode === CHAT_MODES.FROM ? (
 		<section className="flex flex-col w-2/3">
@@ -41,6 +57,22 @@ export const ChatBubble = ({ mode, text, lang }) => {
 		</section>
 	) : (
 		<section className="flex flex-col w-2/3">
+			<section className="flex items-center gap-4 py-2">
+				<Button
+					onClick={play}
+					className="flex items-center gap-2"
+					variant="text"
+				>
+					<FaVolumeHigh className="w-5 h-5" />
+					<p className="text-[10px]">
+						{dayjs(new Date(duration)).format("mm:ss")}
+					</p>
+				</Button>
+
+				<Button variant="text" onClick={shareAudio}>
+					<FaRegShareFromSquare className="text-light-white w-5 h-5" />
+				</Button>
+			</section>
 			<section className="flex items-center gap-4">
 				<section className="relative text-xs min-h-16 max-h-full text-white bg-primary/50 drop-shadow-2xl rounded-lg py-1 px-3">
 					<p>{text}</p>
@@ -50,9 +82,6 @@ export const ChatBubble = ({ mode, text, lang }) => {
 						</Button>
 					</section>
 				</section>
-				<Button onClick={play} className="" variant="text">
-					<FaVolumeHigh className="w-5 h-5" />
-				</Button>
 			</section>
 			<section className="flex items-center justify-start gap-2">
 				<p className="text-start text-xs">{lang}</p>

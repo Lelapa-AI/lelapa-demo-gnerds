@@ -30,3 +30,16 @@ export const CHAT_PLACEHOLDERS = {
 	Zulu: "Faka umyalezo lapha...",
 	Swahili: "Andika ujumbe hapa...",
 };
+
+export const VOICE_CODES = {
+	"Northern Sotho": "nso-ZA-dnn-tshepo",
+	Afrikaans: "afr-ZA-dnn-kobus",
+	"Southern Sotho": "sot-ZA-hmm-kamohelo",
+	Swati: "ssw-ZA-dnn-temaswati",
+	Tsonga: "tso-ZA-dnn-sasekani",
+	Tswana: "tsn-ZA-dnn-lethabo",
+	Xhosa: "xho-ZA-dnn-vuyo",
+	Zulu: "zul-ZA-hmm-lindiwe",
+	English: "eng-ZA-dnn-candice",
+	Swahili: "sw-TZ-Standard-A",
+};
