@@ -1,3 +1,3 @@
-export const audioModel = ({ wav_64 }) => ({
-	audioWav: wav_64,
+export const audioModel = ({ data }) => ({
+	audioWav: data?.wav_64,
 });

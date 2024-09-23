@@ -29,8 +29,6 @@ export const Transcribe = () => {
 		select: transcriptionModel,
 	});
 
-	console.log(data, isLoading);
-
 	return (
 		<PageLayout hasBack title="Transcribe">
 			<section className="flex items-center gap-2 justify-end">

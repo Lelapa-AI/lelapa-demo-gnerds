@@ -1,30 +1,69 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { IoSend } from "react-icons/io5";
 import { BeatLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
 
-import { TranslateService, translationModel } from "../../services";
+import {
+	TranslateService,
+	translationModel,
+	TranscribeService,
+	transcriptionModel,
+} from "../../services";
 import { LANG_CODES, CHAT_PLACEHOLDERS } from "../../constants";
 import { VoiceRecorder, ChatBubble, Avatar } from "../common";
 import { useSettingsStore } from "../../store";
 import { PageLayout } from "../templates";
-import { useScreen } from "../../hooks";
+import { useScreen, useTranscribe } from "../../hooks";
 
 export const Chat = () => {
+	const [textMode, setTextMode] = useState(true);
 	const { defaultLanguage, outputLanguage } = useSettingsStore();
-	const [enable, setEnable] = useState(false);
 	const [inputLanguage] = useState(defaultLanguage);
 	const [inputText, setInputText] = useState("");
-	const [sent, setSent] = useState(false);
 	const [messages, setMessages] = useState([]);
+	const [enable, setEnable] = useState(false);
+	const [sent, setSent] = useState(false);
+	const [received, setReceived] = useState(false);
 	const { isWeb } = useScreen();
+	const {
+		base64String,
+		fileName,
+		fileSize,
+		setBase64String,
+		setFileName,
+		setFileSize,
+	} = useTranscribe();
 
 	const handleInputChange = (e) => setInputText(e.target.value);
 
+	const transcribe = useMemo(
+		() => !!fileName && !!base64String && fileSize !== 0,
+		[fileName, base64String, fileSize],
+	);
+
+	const { data: textData, isLoading: transcribing } = useQuery({
+		queryKey: ["transcribe"],
+		queryFn: () =>
+			TranscribeService.transcribeAsync(fileName, base64String, fileSize),
+		enabled: transcribe,
+		select: transcriptionModel,
+	});
+
+	useEffect(
+		() => setTextMode(!(transcribing && textData?.transcription)),
+		[transcribing, textData],
+	);
+
 	const onSend = () => {
-		setSent(true);
 		setEnable(true);
-		setMessages([inputText]);
+		setSent(true);
+		console.log(
+			"Text Mode",
+			textMode,
+			"Input:",
+			textMode ? inputText : textData?.transcription,
+		);
+		setMessages([textMode ? inputText : textData?.transcription]);
 		refetch();
 	};
 
@@ -32,12 +71,17 @@ export const Chat = () => {
 		queryKey: ["translate"],
 		queryFn: () =>
 			TranslateService.translate(
-				inputText,
+				textMode ? inputText : textData?.transcription,
 				LANG_CODES[inputLanguage],
 				LANG_CODES[outputLanguage],
 			),
-		enabled: enable && sent && inputText.length > 0,
+		enabled:
+			(enable && sent && inputText.length > 0) || !!textData?.transcription,
 		select: translationModel,
+		onSuccess: () => {
+			setEnable(false);
+			setReceived(true);
+		},
 	});
 
 	return (
@@ -73,7 +117,11 @@ export const Chat = () => {
 			</section>
 
 			<section className="absolute bottom-0 left-0 right-0 flex items-center gap-2 px-2 py-1">
-				<VoiceRecorder />
+				<VoiceRecorder
+					setBase64String={setBase64String}
+					setFileName={setFileName}
+					setFileSize={setFileSize}
+				/>
 				<input
 					type="text"
 					onChange={handleInputChange}
