@@ -25,7 +25,6 @@ export const Chat = () => {
 		setSent(true);
 		setEnable(true);
 		setMessages([inputText]);
-		//setInputText("");
 		refetch();
 	};
 
