@@ -13,7 +13,7 @@ export const Transcribe = () => {
 					}}
 					showVisualizer
 					downloadOnSavePress={true}
-					downloadFileExtension="webm"
+					downloadFileExtension="mp3"
 				/>
 			</section>
 		</PageLayout>

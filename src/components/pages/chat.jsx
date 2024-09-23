@@ -1,23 +1,23 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { IoSend } from "react-icons/io5";
 import { BeatLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
 
 import { TranslateService, translationModel } from "../../services";
+import { LANG_CODES, CHAT_PLACEHOLDERS } from "../../constants";
 import { VoiceRecorder, ChatBubble, Avatar } from "../common";
 import { useSettingsStore } from "../../store";
-import { LANG_CODES } from "../../constants";
 import { PageLayout } from "../templates";
 import { useScreen } from "../../hooks";
 
 export const Chat = () => {
-	const {defaultLanguage, outputLanguage} = useSettingsStore();
+	const { defaultLanguage, outputLanguage } = useSettingsStore();
 	const [enable, setEnable] = useState(false);
 	const [inputLanguage] = useState(defaultLanguage);
 	const [inputText, setInputText] = useState("");
 	const [sent, setSent] = useState(false);
 	const [messages, setMessages] = useState([]);
-	const {isWeb} = useScreen()
+	const { isWeb } = useScreen();
 
 	const handleInputChange = (e) => setInputText(e.target.value);
 
@@ -45,16 +45,16 @@ export const Chat = () => {
 		<PageLayout
 			hasBack
 			title={outputLanguage}
-			rightHeader={
-				<Avatar name={outputLanguage}/>
-			}
+			rightHeader={<Avatar name={outputLanguage} />}
 		>
-		{isWeb && <header className="flex justify-center items-center flex-col">
-			<section className="flex gap-1">
-				Chatting with <p className="text-primary">{outputLanguage}</p>
-			</section>
-			<Avatar name={outputLanguage}/>
-		</header>}
+			{isWeb && (
+				<header className="flex justify-center items-center flex-col">
+					<section className="flex gap-1">
+						Chatting with <p className="text-primary">{outputLanguage}</p>
+					</section>
+					<Avatar name={outputLanguage} />
+				</header>
+			)}
 			<section className="absolute bottom-[15%] left-0 right-0 flex-col gap-2 px-2">
 				<section className="flex items-center justify-end">
 					{sent && (
@@ -78,7 +78,7 @@ export const Chat = () => {
 				<input
 					type="text"
 					onChange={handleInputChange}
-					placeholder="Type a message"
+					placeholder={[CHAT_PLACEHOLDERS[defaultLanguage]]}
 					className="w-4/5 rounded-lg p-2 bg-light-white text-[black] border-none focus:outline-none"
 				/>
 				<button
