@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { IoSend } from "react-icons/io5";
 import { BeatLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
+import { BarLoader } from "react-spinners";
 
 import {
 	TranslateService,
@@ -122,9 +123,10 @@ export const Chat = () => {
 					<Avatar name={outputLanguage} />
 				</header>
 			)}
-			<section className="flex items-center justify-center gap-2 px-2 py-1">
-				<p>
-					Status: <span className="text-secondary">{process}</span>
+			<section className="flex flex-col items-center gap-2 justify-center">
+				<BarLoader color="#2563EB" loading={process !== "Idle"} />
+				<p className="text-center text-xs">
+					{process !== "Idle" ? `${process}...` : ""}
 				</p>
 			</section>
 			<section className="absolute bottom-[15%] left-0 right-0 flex-col gap-2 px-2">

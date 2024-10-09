@@ -5,6 +5,7 @@ import { SubHeading, VoiceRecorder } from "../common";
 import { TranscribeService, transcriptionModel } from "../../services";
 import { useTranscribe } from "../../hooks";
 import { PageLayout } from "../templates";
+import { BarLoader } from "react-spinners";
 
 export const Transcribe = () => {
 	const {
@@ -32,9 +33,19 @@ export const Transcribe = () => {
 	return (
 		<PageLayout hasBack title="Transcribe">
 			<section className="flex items-center gap-2 justify-end">
-				<h2 className="text-xl font-bold">Language:</h2>
-				<p className="bg-tertiary font-semibold px-3 py-1 rounded-lg w-fit">
-					{data?.languageId ?? ""}
+				{data?.languageId && (
+					<>
+						<h2 className="text-xl font-bold">Language:</h2>
+						<p className="bg-tertiary font-semibold px-3 py-1 rounded-lg w-fit">
+							{data?.languageId ?? ""}
+						</p>
+					</>
+				)}
+			</section>
+			<section className="flex flex-col items-center gap-2 justify-center">
+				<BarLoader color="#2563EB" loading={isLoading} />
+				<p className="text-center text-xs">
+					{isLoading ? "Transcribing..." : ""}{" "}
 				</p>
 			</section>
 			<section className="flex items-center justify-center h-screen">

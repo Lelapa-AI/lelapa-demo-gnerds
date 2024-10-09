@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdContentCopy } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import { BeatLoader } from "react-spinners";
@@ -10,7 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { config } from "../../../config";
 import { Button, P, PageLayout, LanguageDropdown } from "../../components";
 import { TranslateService, translationModel } from "../../services";
-import { LANG_CODES } from "../../constants";
+import { LANG_CODES, CHAT_PLACEHOLDERS } from "../../constants";
 import { useSettingsStore } from "../../store";
 
 export const Translate = () => {
@@ -31,8 +31,11 @@ export const Translate = () => {
 			),
 		enabled: enable,
 		select: translationModel,
-		onSuccess: () => setEnable(false),
 	});
+
+	useEffect(() => {
+		if (data?.translation) setEnable(false);
+	}, [data?.translation, setEnable]);
 
 	const onStartTranslate = () => {
 		setEnable(true);
@@ -82,7 +85,7 @@ export const Translate = () => {
 					id="input-text"
 					rows={3}
 					onChange={(e) => setTextState(e.target.value)}
-					placeholder="text"
+					placeholder={CHAT_PLACEHOLDERS[inputTextState]}
 					className="w-full rounded-none bg-light-white border-none focus:outline-none"
 				/>
 				<br />
@@ -104,7 +107,7 @@ export const Translate = () => {
 					<span className="text-l font-bold text-primary ">To: </span>
 					{outputTextState}
 				</p>
-				{isLoading ? <BeatLoader /> : <p>{data?.translation}</p>}
+				{isLoading ? <BeatLoader /> : <p>{data?.translation ?? ""}</p>}
 				<section className="absolute flex right-0 bottom-2 items-center gap-2 px-2">
 					<Button onClick={copyToClipboard} variant="text">
 						<MdContentCopy className="text-[black] w-5 h-5 hover:text-primary" />

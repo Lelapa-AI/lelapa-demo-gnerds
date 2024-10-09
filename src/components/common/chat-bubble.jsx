@@ -11,14 +11,17 @@ import { Button } from "./button";
 
 export const ChatBubble = ({ mode, text, lang, audio }) => {
 	const [listen, setListen] = useState(false);
-	const [play, { duration, stop }] = useSound(`data:audio/wav;base64,${audio}`, {
-		volume: 0.9,
-		playbackRate: 1,
-		soundEnabled: !!audio,
-	});
+	const [play, { duration, stop }] = useSound(
+		`data:audio/wav;base64,${audio}`,
+		{
+			volume: 0.9,
+			playbackRate: 1,
+			soundEnabled: !!audio,
+		},
+	);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		// Stop the current audio when the audio prop changes
 		stop();
 		setListen(false);
 	}, [audio, stop]);
