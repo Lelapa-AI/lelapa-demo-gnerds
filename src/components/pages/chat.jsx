@@ -60,12 +60,13 @@ export const Chat = () => {
 		queryKey: ["translate"],
 		queryFn: () =>
 			TranslateService.translate(
-				textMode ? inputText : textData?.transcription,
+				textMode ? inputText : (textData?.transcription ?? "Testing text"),
 				LANG_CODES[inputLanguage],
 				LANG_CODES[outputLanguage],
 			),
-		enabled:
-			(enable && sent && inputText.length > 0) || !!textData?.transcription,
+		enabled: textMode
+			? enable && sent && inputText.length > 0
+			: !!textData?.transcription && !transcribing,
 		select: translationModel,
 	});
 
@@ -83,10 +84,22 @@ export const Chat = () => {
 		if (synthesizing) console.log("Process Stage", process);
 	}, [translating, transcribing, synthesizing, process]);
 
-	useEffect(
-		() => setTextMode(!(transcribing && textData?.transcription)),
-		[transcribing, textData],
-	);
+	useEffect(() => {
+		if (textData?.transcription) {
+			onSend();
+		}
+	}, [textData?.transcription]);
+
+	useEffect(() => {
+		if (
+			(textData?.transcription && !transcribing) ||
+			process === "Transcribing"
+		) {
+			setTextMode(false);
+		} else {
+			setTextMode(true);
+		}
+	}, [transcribing, textData?.transcription, process]);
 
 	const onSend = () => {
 		setEnable(true);
@@ -98,10 +111,15 @@ export const Chat = () => {
 	useEffect(() => {
 		translating
 			? setProcess("Translating")
-			: data?.translation && !translating
+			: synthesizing
 				? setProcess("Synthesizing")
-				: void 0;
-	}, [data?.translation, translating]);
+				: transcribing
+					? setProcess("Transcribing")
+					: setProcess("Idle");
+		if (data?.translation && !translating) {
+			setProcess("Synthesizing");
+		}
+	}, [synthesizing, translating, transcribing, data?.translation]);
 
 	useEffect(() => {
 		if (audioData?.audioWav && !synthesizing) {
