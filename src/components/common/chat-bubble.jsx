@@ -7,9 +7,10 @@ import { FaRegShareFromSquare, FaShare, FaVolumeHigh } from "react-icons/fa6";
 import { audioModel, SpeechService } from "../../services";
 import { CHAT_MODES, VOICE_CODES } from "../../constants";
 import { Button } from "./button";
-import { useMemo } from "react";
+import { useState } from "react";
 
 export const ChatBubble = ({ mode, text, lang }) => {
+	const [audio, setAudio] = useState(null);
 	const shareToApps = () => {
 		if (navigator.share) {
 			navigator.share({
@@ -24,17 +25,25 @@ export const ChatBubble = ({ mode, text, lang }) => {
 		queryFn: () => SpeechService.synthesize(text, VOICE_CODES[lang]),
 		enabled: mode === CHAT_MODES.TO,
 		select: audioModel,
+		onSuccess: (data) => {
+			setAudio(data.audioWav);
+		},
 	});
 
-	const audio = useMemo(
+	/* const audio = useMemo(
 		() => `data:audio/wav;base64,${data?.audioWav}`,
 		[data?.audioWav],
-	);
+	); */
 
-	const [play, { duration }] = useSound(audio, {
-		volume: 0.5,
+	const [play, { duration }] = useSound(`data:audio/wav;base64,${audio}`, {
+		volume: 0.8,
 		playbackRate: 1,
+		soundEnabled: Boolean(audio),
 	});
+
+	const playAudio = () => {
+		play();
+	};
 
 	const shareAudio = () => {
 		if (navigator.share) {
@@ -59,7 +68,7 @@ export const ChatBubble = ({ mode, text, lang }) => {
 		<section className="flex flex-col w-2/3">
 			<section className="flex items-center gap-4 py-2">
 				<Button
-					onClick={play}
+					onClick={playAudio}
 					className="flex items-center gap-2"
 					variant="text"
 				>
