@@ -32,7 +32,6 @@ export const OutputBox = ({ text, isLoading }) => {
 	return (
 		<>
 			<section className="flex flex-col">
-				<SubHeading title="Transcription:" />
 				<div className="rounded-lg relative bg-light-white text-[black] flex flex-col h-36 px-2">
 					{isLoading ? <BeatLoader /> : <p>{text ?? ""}</p>}
 					<section className="absolute flex right-0 bottom-2 items-center gap-2 px-2">
