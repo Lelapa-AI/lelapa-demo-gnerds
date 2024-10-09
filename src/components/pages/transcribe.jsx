@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { BarLoader } from "react-spinners";
 
-import { SubHeading, VoiceRecorder } from "../common";
 import { TranscribeService, transcriptionModel } from "../../services";
+import { SubHeading, VoiceRecorder, OutputBox } from "../common";
 import { useTranscribe } from "../../hooks";
 import { PageLayout } from "../templates";
-import { BarLoader } from "react-spinners";
 
 export const Transcribe = () => {
 	const {
@@ -51,11 +51,8 @@ export const Transcribe = () => {
 			<section className="flex items-center justify-center h-screen">
 				{!isLoading && data?.transcription ? (
 					<section className="flex flex-col">
-						<SubHeading title="Results" />
-						<section className="flex items-center gap-5 border-b-secondary">
-							<h2 className="text-2xl font-bold">Transcription:</h2>
-							<p>{data?.transcription ?? ""}</p>
-						</section>
+						<SubHeading title="Transcription:" />
+						<OutputBox text={data?.transcription} isLoading={isLoading} />
 					</section>
 				) : (
 					<VoiceRecorder

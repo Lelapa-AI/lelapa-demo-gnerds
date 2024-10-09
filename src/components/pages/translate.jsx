@@ -35,7 +35,7 @@ export const Translate = () => {
 
 	useEffect(() => {
 		if (data?.translation) setEnable(false);
-	}, [data?.translation, setEnable]);
+	}, [data?.translation]);
 
 	const onStartTranslate = () => {
 		setEnable(true);

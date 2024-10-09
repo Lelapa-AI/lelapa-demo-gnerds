@@ -112,7 +112,7 @@ export const Home = () => {
 							variant="gradient"
 							onClick={goToChat}
 						>
-							Converse
+							Chat
 						</Button>
 					</div>
 					<div className="w-full shadow-xl bg-gray-100 flex flex-col p-4 md:my-0 my-8 rounded-lg hover:scale-105 duration-300 hover:bg-background">
@@ -138,14 +138,14 @@ export const Home = () => {
 							alt="/"
 						/>
 						<h2 className="text-2xl font-bold text-center py-8">Transcribe</h2>
-						<p className="text-center text-4xl font-bold">Text to Speech</p>
+						<p className="text-center text-4xl font-bold">Speech to Text</p>
 
 						<Button
 							className="w-[200px] rounded-md font-medium my-6 mx-auto px-6"
 							variant="gradient"
 							onClick={goToTranscribe}
 						>
-							Chat
+							Transcribe
 						</Button>
 					</div>
 				</div>
