@@ -7,15 +7,18 @@ import {
 	TranslateService,
 	translationModel,
 	TranscribeService,
+	SpeechService,
+	audioModel,
 	transcriptionModel,
 } from "../../services";
-import { LANG_CODES, CHAT_PLACEHOLDERS } from "../../constants";
+import { LANG_CODES, CHAT_PLACEHOLDERS, VOICE_CODES } from "../../constants";
 import { VoiceRecorder, ChatBubble, Avatar } from "../common";
 import { useSettingsStore } from "../../store";
 import { PageLayout } from "../templates";
 import { useScreen, useTranscribe } from "../../hooks";
 
 export const Chat = () => {
+	const [process, setProcess] = useState("Idle");
 	const [textMode, setTextMode] = useState(true);
 	const { defaultLanguage, outputLanguage } = useSettingsStore();
 	const [inputLanguage] = useState(defaultLanguage);
@@ -23,7 +26,6 @@ export const Chat = () => {
 	const [messages, setMessages] = useState([]);
 	const [enable, setEnable] = useState(false);
 	const [sent, setSent] = useState(false);
-	const [received, setReceived] = useState(false);
 	const { isWeb } = useScreen();
 	const {
 		base64String,
@@ -49,6 +51,37 @@ export const Chat = () => {
 		select: transcriptionModel,
 	});
 
+	const {
+		data,
+		isLoading: translating,
+		refetch,
+	} = useQuery({
+		queryKey: ["translate"],
+		queryFn: () =>
+			TranslateService.translate(
+				textMode ? inputText : textData?.transcription,
+				LANG_CODES[inputLanguage],
+				LANG_CODES[outputLanguage],
+			),
+		enabled:
+			(enable && sent && inputText.length > 0) || !!textData?.transcription,
+		select: translationModel,
+	});
+
+	const { data: audioData, isLoading: synthesizing } = useQuery({
+		queryKey: ["synthesize"],
+		queryFn: () =>
+			SpeechService.synthesize(data?.translation, VOICE_CODES[outputLanguage]),
+		enabled: !!data?.translation && process === "Synthesizing",
+		select: audioModel,
+	});
+
+	useEffect(() => {
+		if (translating) console.log("Process Stage", process);
+		if (transcribing) console.log("Process Stage", process);
+		if (synthesizing) console.log("Process Stage", process);
+	}, [translating, transcribing, synthesizing, process]);
+
 	useEffect(
 		() => setTextMode(!(transcribing && textData?.transcription)),
 		[transcribing, textData],
@@ -61,22 +94,19 @@ export const Chat = () => {
 		refetch();
 	};
 
-	const { data, isLoading, refetch } = useQuery({
-		queryKey: ["translate"],
-		queryFn: () =>
-			TranslateService.translate(
-				textMode ? inputText : textData?.transcription,
-				LANG_CODES[inputLanguage],
-				LANG_CODES[outputLanguage],
-			),
-		enabled:
-			(enable && sent && inputText.length > 0) || !!textData?.transcription,
-		select: translationModel,
-		onSuccess: () => {
-			setEnable(false);
-			setReceived(true);
-		},
-	});
+	useEffect(() => {
+		translating
+			? setProcess("Translating")
+			: data?.translation && !translating
+				? setProcess("Synthesizing")
+				: void 0;
+	}, [data?.translation, translating]);
+
+	useEffect(() => {
+		if (audioData?.audioWav && !synthesizing) {
+			setProcess("Idle");
+		}
+	}, [audioData?.audioWav, synthesizing]);
 
 	return (
 		<PageLayout
@@ -92,6 +122,11 @@ export const Chat = () => {
 					<Avatar name={outputLanguage} />
 				</header>
 			)}
+			<section className="flex items-center justify-center gap-2 px-2 py-1">
+				<p>
+					Status: <span className="text-secondary">{process}</span>
+				</p>
+			</section>
 			<section className="absolute bottom-[15%] left-0 right-0 flex-col gap-2 px-2">
 				<section className="flex items-center justify-end">
 					{sent && (
@@ -99,12 +134,13 @@ export const Chat = () => {
 					)}
 				</section>
 				<section className="flex items-center justify-start">
-					{isLoading && <BeatLoader color="#F19A1A" />}
-					{enable && !isLoading && (
+					{translating && <BeatLoader color="#F19A1A" />}
+					{enable && !translating && (
 						<ChatBubble
 							mode="to"
 							text={data?.translation}
 							lang={outputLanguage}
+							audio={audioData?.audioWav}
 						/>
 					)}
 				</section>

@@ -10,7 +10,7 @@ export const LANG_CODES = {
 	Xhosa: "xho_Latn",
 	Zulu: "zul_Latn",
 	English: "eng_Latn",
-	Swahili: "swh_Latn",
+	/* Swahili: "swh_Latn", */
 };
 
 export const CHAT_MODES = {
@@ -28,7 +28,7 @@ export const CHAT_PLACEHOLDERS = {
 	Tswana: "Tlhalosa tlhaloso ya gago ka gonne...",
 	Xhosa: "Tikhandlela ikhala apha...",
 	Zulu: "Faka umyalezo lapha...",
-	Swahili: "Andika ujumbe hapa...",
+	/* Swahili: "Andika ujumbe hapa...", */
 };
 
 export const VOICE_CODES = {
